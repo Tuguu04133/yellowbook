@@ -49,7 +49,7 @@ app.get('/yellow-books/:id', async (req, res) => {
   try {
     const { id } = req.params;
     const yellowBook = await prisma.yellowBook.findUnique({
-      where: { id },
+      where: { id: parseInt(id, 10) },
     });
 
     if (!yellowBook) {
