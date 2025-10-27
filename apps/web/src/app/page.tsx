@@ -21,7 +21,7 @@ export default function Index() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const apiUrl = 'http://localhost:3333';
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
     fetch(`${apiUrl}/yellow-books`)
       .then((res) => res.json())
       .then((data) => {
