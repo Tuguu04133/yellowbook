@@ -74,6 +74,32 @@ app.get('/yellow-books/:id', async (req, res) => {
   }
 });
 
+// POST /yellow-books - шинэ бичлэг нэмэх
+app.post('/yellow-books', async (req, res) => {
+  try {
+    const validatedData = YellowBookEntrySchema.omit({ 
+      id: true, 
+      createdAt: true, 
+      updatedAt: true 
+    }).parse(req.body);
+
+    const yellowBook = await prisma.yellowBook.create({
+      data: validatedData,
+    });
+
+    res.status(201).json({
+      success: true,
+      data: yellowBook,
+    });
+  } catch (error) {
+    console.error('Error creating yellow book:', error);
+    res.status(400).json({
+      success: false,
+      error: 'Failed to create yellow book entry',
+    });
+  }
+});
+
 const host = process.env['HOST'] || '0.0.0.0';
 const port = Number(process.env['PORT']) || 3333;
 
