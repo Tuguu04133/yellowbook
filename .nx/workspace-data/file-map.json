@@ -93,7 +93,7 @@
         },
         {
           "file": "libs/contract/src/lib/yellow-book.schema.ts",
-          "hash": "10775674894227797615",
+          "hash": "786277997540721889",
           "deps": [
             "npm:zod"
           ]
@@ -397,7 +397,7 @@
         },
         {
           "file": "apps/web/src/app/page.tsx",
-          "hash": "17488675499506537371",
+          "hash": "1874354643773783878",
           "deps": [
             "npm:react"
           ]
