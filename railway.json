@@ -5,7 +5,7 @@
     "buildCommand": "npm install && DATABASE_URL=$DATABASE_URL npx prisma generate && npx nx build api"
   },
   "deploy": {
-    "startCommand": "npx prisma migrate deploy && npx nx serve api --prod",
+    "startCommand": "npx prisma db push && npm run db:seed && npx nx serve api --prod",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
