@@ -3,7 +3,6 @@ import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 import { YellowBookEntrySchema } from '@yellowbook/contract';
-import { config } from '@yellowbook/config';
 
 const prisma = new PrismaClient();
 const app = express();
@@ -75,8 +74,8 @@ app.get('/yellow-books/:id', async (req, res) => {
   }
 });
 
-const host = process.env['HOST'] || config.api.host as string;
-const port = Number(process.env['PORT']) || config.api.port as number;
+const host = process.env['HOST'] || '0.0.0.0';
+const port = Number(process.env['PORT']) || 3333;
 
 app.listen(port, host, () => {
   console.log(`🚀 Yellow Book API running at http://${host}:${port}`);
