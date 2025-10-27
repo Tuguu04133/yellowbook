@@ -49,6 +49,68 @@
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
+      "contract": [
+        {
+          "file": "libs/contract/README.md",
+          "hash": "1976666744497467056"
+        },
+        {
+          "file": "libs/contract/eslint.config.mjs",
+          "hash": "4313095032450400554",
+          "deps": [
+            [
+              "npm:jsonc-eslint-parser",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "libs/contract/jest.config.ts",
+          "hash": "8011514303017277884"
+        },
+        {
+          "file": "libs/contract/package.json",
+          "hash": "7267137677274756388",
+          "deps": [
+            "npm:tslib"
+          ]
+        },
+        {
+          "file": "libs/contract/project.json",
+          "hash": "3996175964783018326"
+        },
+        {
+          "file": "libs/contract/src/index.ts",
+          "hash": "8148684552411797323"
+        },
+        {
+          "file": "libs/contract/src/lib/contract.spec.ts",
+          "hash": "8226632352898619642"
+        },
+        {
+          "file": "libs/contract/src/lib/contract.ts",
+          "hash": "17751421000762628246"
+        },
+        {
+          "file": "libs/contract/src/lib/yellow-book.schema.ts",
+          "hash": "10775674894227797615",
+          "deps": [
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "libs/contract/tsconfig.json",
+          "hash": "12975668481162286788"
+        },
+        {
+          "file": "libs/contract/tsconfig.lib.json",
+          "hash": "3632393694954060084"
+        },
+        {
+          "file": "libs/contract/tsconfig.spec.json",
+          "hash": "6622138706846345436"
+        }
+      ],
       "config": [
         {
           "file": "libs/config/README.md",
@@ -169,7 +231,7 @@
         },
         {
           "file": "package.json",
-          "hash": "7350877099127561308",
+          "hash": "14679992234132764590",
           "deps": [
             "npm:@eslint/js",
             "npm:@nx/devkit",
@@ -281,32 +343,6 @@
           "hash": "5641982138798124953"
         }
       ],
-      "web-e2e": [
-        {
-          "file": "apps/web-e2e/playwright.config.ts",
-          "hash": "14888424123113362402",
-          "deps": [
-            "npm:@playwright/test",
-            "npm:@nx/playwright",
-            "npm:@nx/devkit"
-          ]
-        },
-        {
-          "file": "apps/web-e2e/project.json",
-          "hash": "236892884893949848"
-        },
-        {
-          "file": "apps/web-e2e/src/example.spec.ts",
-          "hash": "16019101014373124625",
-          "deps": [
-            "npm:@playwright/test"
-          ]
-        },
-        {
-          "file": "apps/web-e2e/tsconfig.json",
-          "hash": "18107275616570252607"
-        }
-      ],
       "web": [
         {
           "file": "apps/web/.swcrc",
@@ -378,66 +414,30 @@
           "hash": "13566295045191207177"
         }
       ],
-      "contract": [
+      "web-e2e": [
         {
-          "file": "libs/contract/README.md",
-          "hash": "1976666744497467056"
-        },
-        {
-          "file": "libs/contract/eslint.config.mjs",
-          "hash": "4313095032450400554",
+          "file": "apps/web-e2e/playwright.config.ts",
+          "hash": "14888424123113362402",
           "deps": [
-            [
-              "npm:jsonc-eslint-parser",
-              "dynamic"
-            ]
+            "npm:@playwright/test",
+            "npm:@nx/playwright",
+            "npm:@nx/devkit"
           ]
         },
         {
-          "file": "libs/contract/jest.config.ts",
-          "hash": "8011514303017277884"
+          "file": "apps/web-e2e/project.json",
+          "hash": "236892884893949848"
         },
         {
-          "file": "libs/contract/package.json",
-          "hash": "7267137677274756388",
+          "file": "apps/web-e2e/src/example.spec.ts",
+          "hash": "16019101014373124625",
           "deps": [
-            "npm:tslib"
+            "npm:@playwright/test"
           ]
         },
         {
-          "file": "libs/contract/project.json",
-          "hash": "3996175964783018326"
-        },
-        {
-          "file": "libs/contract/src/index.ts",
-          "hash": "8148684552411797323"
-        },
-        {
-          "file": "libs/contract/src/lib/contract.spec.ts",
-          "hash": "8226632352898619642"
-        },
-        {
-          "file": "libs/contract/src/lib/contract.ts",
-          "hash": "17751421000762628246"
-        },
-        {
-          "file": "libs/contract/src/lib/yellow-book.schema.ts",
-          "hash": "11959306586767360491",
-          "deps": [
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "libs/contract/tsconfig.json",
-          "hash": "12975668481162286788"
-        },
-        {
-          "file": "libs/contract/tsconfig.lib.json",
-          "hash": "3632393694954060084"
-        },
-        {
-          "file": "libs/contract/tsconfig.spec.json",
-          "hash": "6622138706846345436"
+          "file": "apps/web-e2e/tsconfig.json",
+          "hash": "18107275616570252607"
         }
       ],
       "api": [
@@ -451,7 +451,7 @@
         },
         {
           "file": "apps/api/src/main.ts",
-          "hash": "820753846542805959",
+          "hash": "7060853912599634257",
           "deps": [
             "npm:dotenv",
             "npm:express",

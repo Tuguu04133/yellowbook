@@ -803,7 +803,7 @@
           "description": "",
           "js": {
             "packageName": "yellowbook",
-            "packageVersion": "1.0.0",
+            "packageVersion": "1.0.1",
             "packageMain": "index.js",
             "isInPackageManagerWorkspaces": true
           }
@@ -34784,5 +34784,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1761595220967
+  "computedAt": 1761596081608
 }

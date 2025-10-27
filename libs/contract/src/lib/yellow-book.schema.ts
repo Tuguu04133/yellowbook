@@ -10,8 +10,8 @@ export const YellowBookEntrySchema = z.object({
   category: z.string().min(1, 'Category is required'),
   phoneNumber: z.string().regex(/^[0-9\-\+\(\)\s]+$/, 'Invalid phone number'),
   address: z.string().min(1, 'Address is required'),
-  description: z.string().optional(),
-  website: z.string().url().optional().or(z.literal('')),
+  description: z.string().optional().nullable(),
+  website: z.string().url().optional().or(z.literal('')).nullable(),
   createdAt: z.date().or(z.string()),
   updatedAt: z.date().or(z.string()),
 });

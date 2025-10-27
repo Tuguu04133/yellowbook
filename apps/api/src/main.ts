@@ -77,6 +77,8 @@ app.get('/yellow-books/:id', async (req, res) => {
 // POST /yellow-books - шинэ бичлэг нэмэх
 app.post('/yellow-books', async (req, res) => {
   try {
+    console.log('Received POST data:', req.body);
+    
     const validatedData = YellowBookEntrySchema.omit({ 
       id: true, 
       createdAt: true, 
@@ -93,9 +95,20 @@ app.post('/yellow-books', async (req, res) => {
     });
   } catch (error) {
     console.error('Error creating yellow book:', error);
+    
+    // Zod validation error-ийг илүү дэлгэрэнгүй харуулах
+    if (error instanceof Error && 'issues' in error) {
+      return res.status(400).json({
+        success: false,
+        error: 'Validation failed',
+        details: error,
+      });
+    }
+    
     res.status(400).json({
       success: false,
       error: 'Failed to create yellow book entry',
+      message: error instanceof Error ? error.message : 'Unknown error',
     });
   }
 });
