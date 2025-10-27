@@ -133,18 +133,26 @@ function OrgModal({ onClose }: { onClose: () => void }) {
     e.preventDefault();
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
+      
+      console.log('Sending data to API:', newOrg);
+      console.log('API URL:', apiUrl);
+      
       const response = await fetch(`${apiUrl}/yellow-books`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newOrg),
       });
       
-      if (!response.ok) {
-        throw new Error('Failed to add organization');
-      }
+      console.log('Response status:', response.status);
       
       const result = await response.json();
-      console.log('Organization added:', result);
+      console.log('Response data:', result);
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to add organization');
+      }
+      
+      console.log('Organization added successfully:', result);
       
       setNewOrg({
         businessName: '',
