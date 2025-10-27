@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Setup Prisma
+        run: npx prisma generate
+      
+      - name: Run linting
+        run: npm run lint
+      
+      - name: Run format check
+        run: npm run format:check
+      
+      - name: Run type check
+        run: npm run type-check
+      
+      - name: Run affected tests
+        run: npx nx affected -t test --parallel=3
+      
+      - name: Run affected builds
+        run: npx nx affected -t build --parallel=3

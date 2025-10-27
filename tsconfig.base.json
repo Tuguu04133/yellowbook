@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "strict": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@yellowbook/contract": ["libs/contract/src/index.ts"],
+      "@yellowbook/config": ["libs/config/src/index.ts"],
+      "contract": ["libs/contract/src/index.ts"],
+      "config": ["libs/config/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
