@@ -131,22 +131,35 @@ function OrgModal({ onClose }: { onClose: () => void }) {
 
   const handleAddOrg = async (e: React.FormEvent) => {
     e.preventDefault();
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
-    await fetch(`${apiUrl}/yellow-books`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(newOrg),
-    });
-    setNewOrg({
-      businessName: '',
-      phoneNumber: '',
-      address: '',
-      description: '',
-      category: '',
-      website: '',
-    });
-    onClose();
-    window.location.reload();
+    try {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
+      const response = await fetch(`${apiUrl}/yellow-books`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newOrg),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to add organization');
+      }
+      
+      const result = await response.json();
+      console.log('Organization added:', result);
+      
+      setNewOrg({
+        businessName: '',
+        phoneNumber: '',
+        address: '',
+        description: '',
+        category: '',
+        website: '',
+      });
+      onClose();
+      window.location.reload();
+    } catch (error) {
+      console.error('Error adding organization:', error);
+      alert('Байгууллага нэмэхэд алдаа гарлаа. Дахин оролдоно уу.');
+    }
   };
 
   return (

@@ -41,6 +41,7 @@ yellowbook/
 ### Backend
 - **Express** - Node.js web framework
 - **Prisma** - Modern ORM
+- **PostgreSQL** - Production database (Railway)
 - **SQLite** - Development database
 - **CORS** - Cross-origin resource sharing
 

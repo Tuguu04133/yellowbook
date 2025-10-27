@@ -84,7 +84,7 @@ async function main() {
 
   console.log(`✅ Created ${yellowBooks.length} yellow book entries`);
   
-  yellowBooks.forEach((book) => {
+  yellowBooks.forEach((book: { businessName: string; category: string }) => {
     console.log(`  📘 ${book.businessName} (${book.category})`);
   });
 }

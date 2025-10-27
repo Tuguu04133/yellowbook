@@ -135,7 +135,7 @@
         },
         {
           "file": "README.md",
-          "hash": "7854959170401758624"
+          "hash": "14298804728847164428"
         },
         {
           "file": "eslint.config.mjs",
@@ -244,7 +244,7 @@
         },
         {
           "file": "prisma/seed.ts",
-          "hash": "8002128750791752707",
+          "hash": "3433649679216649823",
           "deps": [
             "npm:@prisma/client"
           ]
@@ -255,7 +255,7 @@
         },
         {
           "file": "railway-api.json",
-          "hash": "2708008384618202788"
+          "hash": "8444054073610196052"
         },
         {
           "file": "railway-web.json",
@@ -361,7 +361,7 @@
         },
         {
           "file": "apps/web/src/app/page.tsx",
-          "hash": "1641388750632281979",
+          "hash": "17488675499506537371",
           "deps": [
             "npm:react"
           ]
