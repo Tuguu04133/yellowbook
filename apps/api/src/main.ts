@@ -75,8 +75,8 @@ app.get('/yellow-books/:id', async (req, res) => {
   }
 });
 
-const host = config.api.host as string;
-const port = config.api.port as number;
+const host = process.env['HOST'] || config.api.host as string;
+const port = Number(process.env['PORT']) || config.api.port as number;
 
 app.listen(port, host, () => {
   console.log(`🚀 Yellow Book API running at http://${host}:${port}`);
