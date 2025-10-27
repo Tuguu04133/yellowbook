@@ -1462,6 +1462,14 @@
       "package.json",
       "nx/core/package-json"
     ],
+    "metadata.targetGroups.NPM Scripts.6": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "metadata.targetGroups.NPM Scripts.7": [
+      "package.json",
+      "nx/core/package-json"
+    ],
     "metadata.description": [
       "package.json",
       "nx/core/package-json"
@@ -1543,6 +1551,62 @@
       "nx/core/package-json"
     ],
     "targets.db:seed.metadata.runCommand": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start:api": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start:api.executor": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start:api.options": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start:api.metadata": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start:api.options.script": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start:api.metadata.scriptContent": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.start:api.metadata.runCommand": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:api": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:api.executor": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:api.options": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:api.metadata": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:api.options.script": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:api.metadata.scriptContent": [
+      "package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:api.metadata.runCommand": [
       "package.json",
       "nx/core/package-json"
     ],

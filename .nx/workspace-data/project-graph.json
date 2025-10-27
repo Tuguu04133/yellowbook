@@ -792,6 +792,8 @@
             "NPM Scripts": [
               "test",
               "db:seed",
+              "start:api",
+              "build:api",
               "lint",
               "format",
               "format:check",
@@ -828,6 +830,30 @@
             "metadata": {
               "scriptContent": "tsx prisma/seed.ts",
               "runCommand": "npm run db:seed"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "start:api": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "start:api"
+            },
+            "metadata": {
+              "scriptContent": "node dist/apps/api/main.js",
+              "runCommand": "npm run start:api"
+            },
+            "configurations": {},
+            "parallelism": true
+          },
+          "build:api": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build:api"
+            },
+            "metadata": {
+              "scriptContent": "nx build api --prod",
+              "runCommand": "npm run build:api"
             },
             "configurations": {},
             "parallelism": true
@@ -15401,11 +15427,6 @@
         "source": "api",
         "target": "contract",
         "type": "static"
-      },
-      {
-        "source": "api",
-        "target": "config",
-        "type": "static"
       }
     ],
     "web": [
@@ -15417,6 +15438,11 @@
       {
         "source": "web",
         "target": "npm:react",
+        "type": "static"
+      },
+      {
+        "source": "web",
+        "target": "npm:@nx/react",
         "type": "static"
       }
     ],
@@ -15538,6 +15564,11 @@
       },
       {
         "source": "yellowbook",
+        "target": "npm:autoprefixer",
+        "type": "static"
+      },
+      {
+        "source": "yellowbook",
         "target": "npm:esbuild",
         "type": "static"
       },
@@ -15569,6 +15600,11 @@
       {
         "source": "yellowbook",
         "target": "npm:nx",
+        "type": "static"
+      },
+      {
+        "source": "yellowbook",
+        "target": "npm:postcss",
         "type": "static"
       },
       {
@@ -34319,5 +34355,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1761556834315
+  "computedAt": 1761566574083
 }

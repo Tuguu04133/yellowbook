@@ -49,121 +49,6 @@
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
-      "config": [
-        {
-          "file": "libs/config/README.md",
-          "hash": "14955561250727493101"
-        },
-        {
-          "file": "libs/config/eslint.config.mjs",
-          "hash": "4313095032450400554",
-          "deps": [
-            [
-              "npm:jsonc-eslint-parser",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": "libs/config/jest.config.ts",
-          "hash": "3227280384787045958"
-        },
-        {
-          "file": "libs/config/package.json",
-          "hash": "9812909876067885362",
-          "deps": [
-            "npm:tslib"
-          ]
-        },
-        {
-          "file": "libs/config/project.json",
-          "hash": "16381604864888966786"
-        },
-        {
-          "file": "libs/config/src/index.ts",
-          "hash": "15675278643505422157"
-        },
-        {
-          "file": "libs/config/src/lib/config.spec.ts",
-          "hash": "14624665836767688274"
-        },
-        {
-          "file": "libs/config/src/lib/config.ts",
-          "hash": "9093647614144405902"
-        },
-        {
-          "file": "libs/config/tsconfig.json",
-          "hash": "12975668481162286788"
-        },
-        {
-          "file": "libs/config/tsconfig.lib.json",
-          "hash": "3632393694954060084"
-        },
-        {
-          "file": "libs/config/tsconfig.spec.json",
-          "hash": "6622138706846345436"
-        }
-      ],
-      "web": [
-        {
-          "file": "apps/web/.swcrc",
-          "hash": "2742566327615098680"
-        },
-        {
-          "file": "apps/web/index.d.ts",
-          "hash": "5498222895072842432"
-        },
-        {
-          "file": "apps/web/next-env.d.ts",
-          "hash": "1320675027584673186"
-        },
-        {
-          "file": "apps/web/next.config.js",
-          "hash": "5443563404894739361",
-          "deps": [
-            "npm:@nx/next"
-          ]
-        },
-        {
-          "file": "apps/web/project.json",
-          "hash": "3666953826983028672"
-        },
-        {
-          "file": "apps/web/public/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/web/public/favicon.ico",
-          "hash": "9303420814833116677"
-        },
-        {
-          "file": "apps/web/src/app/api/hello/route.ts",
-          "hash": "495073956729887886"
-        },
-        {
-          "file": "apps/web/src/app/global.css",
-          "hash": "5221762088766465567"
-        },
-        {
-          "file": "apps/web/src/app/layout.tsx",
-          "hash": "3199602742003048733"
-        },
-        {
-          "file": "apps/web/src/app/page.module.css",
-          "hash": "4786619528779355986"
-        },
-        {
-          "file": "apps/web/src/app/page.tsx",
-          "hash": "1402870800196644957",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/web/tsconfig.json",
-          "hash": "13566295045191207177"
-        }
-      ],
       "web-e2e": [
         {
           "file": "apps/web-e2e/playwright.config.ts",
@@ -190,189 +75,75 @@
           "hash": "18107275616570252607"
         }
       ],
-      "api": [
+      "web": [
         {
-          "file": "apps/api/project.json",
-          "hash": "14544981260166641417"
+          "file": "apps/web/.swcrc",
+          "hash": "2742566327615098680"
         },
         {
-          "file": "apps/api/src/assets/.gitkeep",
+          "file": "apps/web/index.d.ts",
+          "hash": "5498222895072842432"
+        },
+        {
+          "file": "apps/web/next-env.d.ts",
+          "hash": "1320675027584673186"
+        },
+        {
+          "file": "apps/web/next.config.js",
+          "hash": "8549319872288348849",
+          "deps": [
+            "npm:@nx/next"
+          ]
+        },
+        {
+          "file": "apps/web/postcss.config.js",
+          "hash": "4080954692028639031"
+        },
+        {
+          "file": "apps/web/project.json",
+          "hash": "3666953826983028672"
+        },
+        {
+          "file": "apps/web/public/.gitkeep",
           "hash": "3244421341483603138"
         },
         {
-          "file": "apps/api/src/main.ts",
-          "hash": "4142622532532166840",
+          "file": "apps/web/public/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/web/src/app/api/hello/route.ts",
+          "hash": "495073956729887886"
+        },
+        {
+          "file": "apps/web/src/app/global.css",
+          "hash": "15257960221628757377"
+        },
+        {
+          "file": "apps/web/src/app/layout.tsx",
+          "hash": "3199602742003048733"
+        },
+        {
+          "file": "apps/web/src/app/page.module.css",
+          "hash": "4786619528779355986"
+        },
+        {
+          "file": "apps/web/src/app/page.tsx",
+          "hash": "12807160007496802049",
           "deps": [
-            "npm:dotenv",
-            "npm:express",
-            "npm:cors",
-            "npm:@prisma/client",
-            "contract",
-            "config"
+            "npm:react"
           ]
         },
         {
-          "file": "apps/api/tsconfig.app.json",
-          "hash": "663763413802756907"
-        },
-        {
-          "file": "apps/api/tsconfig.json",
-          "hash": "3025378044812449119"
-        }
-      ],
-      "yellowbook": [
-        {
-          "file": ".github/workflows/ci.yml",
-          "hash": "5786767663078140078"
-        },
-        {
-          "file": ".gitignore",
-          "hash": "6767667390064020116"
-        },
-        {
-          "file": ".prettierignore",
-          "hash": "14688272390704683536"
-        },
-        {
-          "file": ".prettierrc",
-          "hash": "16267754514737964994"
-        },
-        {
-          "file": ".vscode/extensions.json",
-          "hash": "16641787860198909091"
-        },
-        {
-          "file": ".vscode/launch.json",
-          "hash": "11911801181309274062"
-        },
-        {
-          "file": "README.md",
-          "hash": "7854959170401758624"
-        },
-        {
-          "file": "eslint.config.mjs",
-          "hash": "10770449096712831357",
+          "file": "apps/web/tailwind.config.js",
+          "hash": "8880217491916646200",
           "deps": [
-            "npm:@nx/eslint-plugin"
+            "npm:@nx/react"
           ]
         },
         {
-          "file": "jest.config.ts",
-          "hash": "6870352021923392442",
-          "deps": [
-            "npm:jest",
-            "npm:@nx/jest"
-          ]
-        },
-        {
-          "file": "jest.preset.js",
-          "hash": "9430166341120122740",
-          "deps": [
-            "npm:@nx/jest"
-          ]
-        },
-        {
-          "file": "nx.json",
-          "hash": "8685246744383510712"
-        },
-        {
-          "file": "package-lock.json",
-          "hash": "16898169694005974490"
-        },
-        {
-          "file": "package.json",
-          "hash": "829639230178598448",
-          "deps": [
-            "npm:@eslint/js",
-            "npm:@nx/devkit",
-            "npm:@nx/esbuild",
-            "npm:@nx/eslint",
-            "npm:@nx/eslint-plugin",
-            "npm:@nx/jest",
-            "npm:@nx/js",
-            "npm:@nx/next",
-            "npm:@nx/node",
-            "npm:@nx/playwright",
-            "npm:@nx/workspace",
-            "npm:@playwright/test",
-            "npm:@swc-node/register",
-            "npm:@swc/cli",
-            "npm:@swc/core",
-            "npm:@swc/helpers",
-            "npm:@types/cors",
-            "npm:@types/express",
-            "npm:@types/jest",
-            "npm:@types/node",
-            "npm:@types/react",
-            "npm:@types/react-dom",
-            "npm:esbuild",
-            "npm:eslint",
-            "npm:eslint-config-prettier",
-            "npm:jest",
-            "npm:jest-environment-node",
-            "npm:jest-util",
-            "npm:jsonc-eslint-parser",
-            "npm:nx",
-            "npm:prettier",
-            "npm:ts-jest",
-            "npm:ts-node",
-            "npm:tslib",
-            "npm:tsx",
-            "npm:typescript",
-            "npm:typescript-eslint",
-            "npm:@prisma/client",
-            "npm:cors",
-            "npm:dotenv",
-            "npm:express",
-            "npm:next",
-            "npm:prisma",
-            "npm:react",
-            "npm:react-dom",
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "prisma.config.ts",
-          "hash": "5262921202294763889",
-          "deps": [
-            "npm:dotenv",
-            "npm:prisma"
-          ]
-        },
-        {
-          "file": "prisma/dev.db",
-          "hash": "13332996929882169475"
-        },
-        {
-          "file": "prisma/migrations/20251027085554_init/migration.sql",
-          "hash": "11295349545032859866"
-        },
-        {
-          "file": "prisma/migrations/migration_lock.toml",
-          "hash": "17507861707484682820"
-        },
-        {
-          "file": "prisma/schema.prisma",
-          "hash": "15443801285344338117"
-        },
-        {
-          "file": "prisma/seed.ts",
-          "hash": "8002128750791752707",
-          "deps": [
-            "npm:@prisma/client"
-          ]
-        },
-        {
-          "file": "prisma/tsconfig.json",
-          "hash": "15803402774881713684"
-        },
-        {
-          "file": "tsconfig.base.json",
-          "hash": "12749544999608590690"
-        },
-        {
-          "file": "vercel.json",
-          "hash": "5641982138798124953"
+          "file": "apps/web/tsconfig.json",
+          "hash": "13566295045191207177"
         }
       ],
       "contract": [
@@ -435,6 +206,258 @@
         {
           "file": "libs/contract/tsconfig.spec.json",
           "hash": "6622138706846345436"
+        }
+      ],
+      "config": [
+        {
+          "file": "libs/config/README.md",
+          "hash": "14955561250727493101"
+        },
+        {
+          "file": "libs/config/eslint.config.mjs",
+          "hash": "4313095032450400554",
+          "deps": [
+            [
+              "npm:jsonc-eslint-parser",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "libs/config/jest.config.ts",
+          "hash": "3227280384787045958"
+        },
+        {
+          "file": "libs/config/package.json",
+          "hash": "9812909876067885362",
+          "deps": [
+            "npm:tslib"
+          ]
+        },
+        {
+          "file": "libs/config/project.json",
+          "hash": "16381604864888966786"
+        },
+        {
+          "file": "libs/config/src/index.ts",
+          "hash": "15675278643505422157"
+        },
+        {
+          "file": "libs/config/src/lib/config.spec.ts",
+          "hash": "14624665836767688274"
+        },
+        {
+          "file": "libs/config/src/lib/config.ts",
+          "hash": "9093647614144405902"
+        },
+        {
+          "file": "libs/config/tsconfig.json",
+          "hash": "12975668481162286788"
+        },
+        {
+          "file": "libs/config/tsconfig.lib.json",
+          "hash": "3632393694954060084"
+        },
+        {
+          "file": "libs/config/tsconfig.spec.json",
+          "hash": "6622138706846345436"
+        }
+      ],
+      "yellowbook": [
+        {
+          "file": ".github/workflows/ci.yml",
+          "hash": "5786767663078140078"
+        },
+        {
+          "file": ".gitignore",
+          "hash": "2824652784810506303"
+        },
+        {
+          "file": ".prettierignore",
+          "hash": "14688272390704683536"
+        },
+        {
+          "file": ".prettierrc",
+          "hash": "16267754514737964994"
+        },
+        {
+          "file": ".vscode/extensions.json",
+          "hash": "16641787860198909091"
+        },
+        {
+          "file": ".vscode/launch.json",
+          "hash": "11911801181309274062"
+        },
+        {
+          "file": "Procfile",
+          "hash": "4363396833340048260"
+        },
+        {
+          "file": "README.md",
+          "hash": "7854959170401758624"
+        },
+        {
+          "file": "eslint.config.mjs",
+          "hash": "10770449096712831357",
+          "deps": [
+            "npm:@nx/eslint-plugin"
+          ]
+        },
+        {
+          "file": "jest.config.ts",
+          "hash": "6870352021923392442",
+          "deps": [
+            "npm:jest",
+            "npm:@nx/jest"
+          ]
+        },
+        {
+          "file": "jest.preset.js",
+          "hash": "9430166341120122740",
+          "deps": [
+            "npm:@nx/jest"
+          ]
+        },
+        {
+          "file": "nx.json",
+          "hash": "8685246744383510712"
+        },
+        {
+          "file": "package-lock.json",
+          "hash": "16898169694005974490"
+        },
+        {
+          "file": "package.json",
+          "hash": "3272961338659828742",
+          "deps": [
+            "npm:@eslint/js",
+            "npm:@nx/devkit",
+            "npm:@nx/esbuild",
+            "npm:@nx/eslint",
+            "npm:@nx/eslint-plugin",
+            "npm:@nx/jest",
+            "npm:@nx/js",
+            "npm:@nx/next",
+            "npm:@nx/node",
+            "npm:@nx/playwright",
+            "npm:@nx/workspace",
+            "npm:@playwright/test",
+            "npm:@swc-node/register",
+            "npm:@swc/cli",
+            "npm:@swc/core",
+            "npm:@swc/helpers",
+            "npm:@types/cors",
+            "npm:@types/express",
+            "npm:@types/jest",
+            "npm:@types/node",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:autoprefixer",
+            "npm:esbuild",
+            "npm:eslint",
+            "npm:eslint-config-prettier",
+            "npm:jest",
+            "npm:jest-environment-node",
+            "npm:jest-util",
+            "npm:jsonc-eslint-parser",
+            "npm:nx",
+            "npm:postcss",
+            "npm:prettier",
+            "npm:ts-jest",
+            "npm:ts-node",
+            "npm:tslib",
+            "npm:tsx",
+            "npm:typescript",
+            "npm:typescript-eslint",
+            "npm:@prisma/client",
+            "npm:cors",
+            "npm:dotenv",
+            "npm:express",
+            "npm:next",
+            "npm:prisma",
+            "npm:react",
+            "npm:react-dom",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "prisma/dev.db",
+          "hash": "13332996929882169475"
+        },
+        {
+          "file": "prisma/migrations/.gitkeep",
+          "hash": "17898907019784962643"
+        },
+        {
+          "file": "prisma/schema.prisma",
+          "hash": "12812793963702010847"
+        },
+        {
+          "file": "prisma/seed.ts",
+          "hash": "8002128750791752707",
+          "deps": [
+            "npm:@prisma/client"
+          ]
+        },
+        {
+          "file": "prisma/tsconfig.json",
+          "hash": "15803402774881713684"
+        },
+        {
+          "file": "railway-api.json",
+          "hash": "8588494641557616725"
+        },
+        {
+          "file": "railway-web.json",
+          "hash": "1403145786880547799"
+        },
+        {
+          "file": "reset-railway-db.md",
+          "hash": "11336644058990391532"
+        },
+        {
+          "file": "scripts/reset-db.ts",
+          "hash": "11833771213831784402",
+          "deps": [
+            "npm:@prisma/client"
+          ]
+        },
+        {
+          "file": "tsconfig.base.json",
+          "hash": "12749544999608590690"
+        },
+        {
+          "file": "vercel.json",
+          "hash": "5641982138798124953"
+        }
+      ],
+      "api": [
+        {
+          "file": "apps/api/project.json",
+          "hash": "14544981260166641417"
+        },
+        {
+          "file": "apps/api/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/api/src/main.ts",
+          "hash": "18010203716209215724",
+          "deps": [
+            "npm:dotenv",
+            "npm:express",
+            "npm:cors",
+            "npm:@prisma/client",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/api/tsconfig.app.json",
+          "hash": "663763413802756907"
+        },
+        {
+          "file": "apps/api/tsconfig.json",
+          "hash": "3025378044812449119"
         }
       ]
     }

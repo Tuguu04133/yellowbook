@@ -5,7 +5,7 @@ import { z } from 'zod';
  * Энэ schema нь yellow book-н жагсаалтын бүтцийг тодорхойлно
  */
 export const YellowBookEntrySchema = z.object({
-  id: z.string().uuid(),
+  id: z.number().int().positive(),
   businessName: z.string().min(1, 'Business name is required'),
   category: z.string().min(1, 'Category is required'),
   phoneNumber: z.string().regex(/^[0-9\-\+\(\)\s]+$/, 'Invalid phone number'),

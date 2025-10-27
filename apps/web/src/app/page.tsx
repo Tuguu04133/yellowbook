@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 interface YellowBookEntry {
-  id: string;
+  id: number;
   businessName: string;
   category: string;
   phoneNumber: string;
