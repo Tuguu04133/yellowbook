@@ -134,13 +134,23 @@ function OrgModal({ onClose }: { onClose: () => void }) {
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
       
-      console.log('Sending data to API:', newOrg);
+      // Хоосон optional талбаруудыг устгах
+      const dataToSend = {
+        businessName: newOrg.businessName,
+        phoneNumber: newOrg.phoneNumber,
+        address: newOrg.address,
+        category: newOrg.category,
+        ...(newOrg.description && { description: newOrg.description }),
+        ...(newOrg.website && { website: newOrg.website }),
+      };
+      
+      console.log('Sending data to API:', dataToSend);
       console.log('API URL:', apiUrl);
       
       const response = await fetch(`${apiUrl}/yellow-books`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newOrg),
+        body: JSON.stringify(dataToSend),
       });
       
       console.log('Response status:', response.status);
