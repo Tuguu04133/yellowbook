@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface YellowBookEntry {
   id: number;
@@ -83,18 +84,44 @@ export default function Index() {
 
       <div className="w-full max-w-4xl flex justify-center">
         {activeTab === 0 && (
-          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl flex p-12 items-center w-full border border-white/20">
-            <div className="flex-1">
-              <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">Бидний тухай</h2>
-              <p className="text-slate-700 text-xl leading-relaxed">
-                Yellow Book нь Монгол дахь бизнесийн мэдээллийг нэг дороос хайж олох боломжийг олгодог систем юм. Байгууллагын нэр, утас, имэйл, байршил, ангиллаар мэдээллийг хүргэнэ.
-              </p>
-            </div>
-            <div className="flex-1 flex justify-center">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full blur-2xl opacity-30"></div>
-                <img src="https://cdn-icons-png.flaticon.com/512/616/616494.png" alt="Business" className="relative w-60 h-60 object-contain drop-shadow-2xl" />
+          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl flex flex-col p-12 items-center w-full border border-white/20">
+            <div className="flex items-center w-full mb-8">
+              <div className="flex-1">
+                <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">Бидний тухай</h2>
+                <p className="text-slate-700 text-xl leading-relaxed mb-6">
+                  Yellow Book нь Монгол дахь бизнесийн мэдээллийг нэг дороос хайж олох боломжийг олгодог систем юм. Байгууллагын нэр, утас, имэйл, байршил, ангиллаар мэдээллийг хүргэнэ.
+                </p>
               </div>
+              <div className="flex-1 flex justify-center">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full blur-2xl opacity-30"></div>
+                  <img src="https://cdn-icons-png.flaticon.com/512/616/616494.png" alt="Business" className="relative w-60 h-60 object-contain drop-shadow-2xl" />
+                </div>
+              </div>
+            </div>
+            
+            {/* Performance-optimized pages links */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+              <Link href="/yellow-books" className="group block p-6 bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-2xl hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="text-4xl mb-3">📚</div>
+                <h3 className="text-xl font-bold text-emerald-700 mb-2">ISR жагсаалт</h3>
+                <p className="text-slate-600 text-sm mb-3">60s revalidation with Suspense streaming</p>
+                <span className="text-emerald-600 group-hover:translate-x-1 inline-block transition-transform">Үзэх →</span>
+              </Link>
+              
+              <Link href="/yellow-books/search" className="group block p-6 bg-gradient-to-br from-purple-50 to-amber-50 rounded-2xl hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="text-4xl mb-3">🔍</div>
+                <h3 className="text-xl font-bold text-purple-700 mb-2">SSR хайлт</h3>
+                <p className="text-slate-600 text-sm mb-3">Dynamic search with client map islands</p>
+                <span className="text-purple-600 group-hover:translate-x-1 inline-block transition-transform">Хайх →</span>
+              </Link>
+              
+              <Link href="/yellow-books/1" className="group block p-6 bg-gradient-to-br from-amber-50 to-emerald-50 rounded-2xl hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="text-4xl mb-3">📄</div>
+                <h3 className="text-xl font-bold text-amber-700 mb-2">SSG дэлгэрэнгүй</h3>
+                <p className="text-slate-600 text-sm mb-3">Static generation with generateStaticParams</p>
+                <span className="text-amber-600 group-hover:translate-x-1 inline-block transition-transform">Жишээ →</span>
+              </Link>
             </div>
           </div>
         )}
@@ -114,7 +141,6 @@ export default function Index() {
   );
 }
 
-// Modal компонент
 function OrgModal({ onClose }: { onClose: () => void }) {
   const [newOrg, setNewOrg] = useState({
     businessName: '',
@@ -134,7 +160,6 @@ function OrgModal({ onClose }: { onClose: () => void }) {
     try {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
       
-      // Хоосон optional талбаруудыг устгах
       const dataToSend = {
         businessName: newOrg.businessName,
         phoneNumber: newOrg.phoneNumber,
