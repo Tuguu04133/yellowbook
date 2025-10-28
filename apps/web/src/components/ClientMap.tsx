@@ -11,9 +11,7 @@ export default function ClientMap({ address, businessName }: MapProps) {
   const mapRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
-    // Client-side only map rendering
     if (typeof window !== 'undefined' && mapRef.current) {
-      // Map initialization logic here
       console.log('Map initialized for:', businessName, address);
     }
   }, [address, businessName]);

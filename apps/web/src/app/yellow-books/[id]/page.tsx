@@ -3,12 +3,11 @@ import Link from 'next/link';
 import { YellowBookEntry } from '@yellowbook/contract';
 import { notFound } from 'next/navigation';
 
-// SSG: Static Site Generation with generateStaticParams
-export const dynamicParams = true; // Allow dynamic params for new entries
+export const dynamicParams = true; 
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
 
-// Pre-generate static pages for all yellow books at build time
+// Build time дээр бүх хуудсыг үүсгэнэ
 export async function generateStaticParams() {
   try {
     const res = await fetch(`${apiUrl}/yellow-books`, {

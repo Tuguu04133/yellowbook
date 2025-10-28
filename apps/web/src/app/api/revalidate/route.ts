@@ -1,14 +1,12 @@
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-// API route for on-demand revalidation
-// Usage: POST /api/revalidate?path=/yellow-books&secret=YOUR_SECRET
+
 export async function POST(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   const path = searchParams.get('path');
   const secret = searchParams.get('secret');
   
-  // Validate secret token
   const revalidateSecret = process.env.REVALIDATE_SECRET || 'dev-secret-token';
   
   if (secret !== revalidateSecret) {

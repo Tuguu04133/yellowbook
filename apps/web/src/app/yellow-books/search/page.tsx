@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { YellowBookEntry } from '@yellowbook/contract';
 import ClientMap from '../../../components/ClientMap';
 
-// SSR: Server-Side Rendering - dynamic for each request
+// SSR: Server-Side Rendering - хүсэлт бүрийн динамикаар
 export const dynamic = 'force-dynamic';
 
 async function searchYellowBooks(query: string): Promise<YellowBookEntry[]> {
@@ -11,7 +11,7 @@ async function searchYellowBooks(query: string): Promise<YellowBookEntry[]> {
   
   try {
     const res = await fetch(`${apiUrl}/yellow-books`, {
-      cache: 'no-store', // Always fetch fresh data for search
+      cache: 'no-store', //  Үргэлж шинэ өгөгдөл
     });
     
     if (!res.ok) {
@@ -38,7 +38,6 @@ async function searchYellowBooks(query: string): Promise<YellowBookEntry[]> {
   }
 }
 
-// Search results skeleton
 function SearchResultsSkeleton() {
   return (
     <div className="space-y-6">
@@ -61,7 +60,6 @@ function SearchResultsSkeleton() {
   );
 }
 
-// Async search results component
 async function SearchResults({ query }: { query: string }) {
   const results = await searchYellowBooks(query);
   

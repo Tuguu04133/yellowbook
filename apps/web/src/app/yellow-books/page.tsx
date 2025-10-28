@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import Link from 'next/link';
 import { YellowBookEntry } from '@yellowbook/contract';
 
-// ISR: Incremental Static Regeneration - 60 seconds
+// 60 секунд бүр автомат шинэчлэгдэнэ
 export const revalidate = 60;
 
 async function getYellowBooks(): Promise<YellowBookEntry[]> {
