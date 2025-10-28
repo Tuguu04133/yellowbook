@@ -147,7 +147,9 @@ async function YellowBookDetail({ id }: { id: string }) {
   );
 }
 
-export default function YellowBookPage({ params }: { params: { id: string } }) {
+export default async function YellowBookPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-8">
       <div className="max-w-4xl mx-auto">
@@ -165,7 +167,7 @@ export default function YellowBookPage({ params }: { params: { id: string } }) {
         </div>
         
         <Suspense fallback={<YellowBookDetailSkeleton />}>
-          <YellowBookDetail id={params.id} />
+          <YellowBookDetail id={id} />
         </Suspense>
       </div>
     </div>
