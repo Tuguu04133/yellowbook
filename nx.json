@@ -23,7 +23,6 @@
     }
   },
   "defaultBase": "main",
-  "nxCloudId": "68ff2ecf5712427c382fc74e",
   "plugins": [
     {
       "plugin": "@nx/next/plugin",

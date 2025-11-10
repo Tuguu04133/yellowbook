@@ -10,6 +10,8 @@ env:
   REGISTRY: ghcr.io
   IMAGE_NAME_API: ${{ github.repository }}-api
   IMAGE_NAME_WEB: ${{ github.repository }}-web
+  NX_CLOUD_ACCESS_TOKEN: ''
+  NX_SKIP_NX_CACHE: 'false'
 
 jobs:
   # Code Quality & Testing
@@ -35,13 +37,8 @@ jobs:
       - name: Setup Prisma
         run: npx prisma generate
 
-      - name: Derive appropriate SHAs for base and head
-        uses: nrwl/nx-set-shas@v4
-        with:
-          main-branch-name: 'main'
-
       - name: Run linting
-        run: npx nx affected -t lint --parallel=3 --base=origin/main || npx nx run-many -t lint --parallel=3
+        run: npx nx run-many -t lint --parallel=3 --skip-nx-cloud
 
       - name: Run type checking
         run: npm run type-check
@@ -50,10 +47,10 @@ jobs:
         run: npm run format:check
 
       - name: Run tests
-        run: npx nx affected -t test --parallel=3 --ci --coverage --base=origin/main || npx nx run-many -t test --parallel=3 --ci
+        run: npx nx run-many -t test --parallel=3 --skip-nx-cloud
 
-      - name: Build all affected projects
-        run: npx nx affected -t build --parallel=3 --base=origin/main || npx nx run-many -t build --parallel=3
+      - name: Build all projects
+        run: npx nx run-many -t build --parallel=3 --skip-nx-cloud
 
       - name: Upload coverage reports
         uses: codecov/codecov-action@v4
