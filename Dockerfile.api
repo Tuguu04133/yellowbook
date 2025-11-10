@@ -14,7 +14,7 @@ COPY libs ./libs
 COPY prisma ./prisma
 
 # Install dependencies
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Generate Prisma Client
 RUN npx prisma generate
@@ -29,9 +29,10 @@ WORKDIR /app
 
 # Install production dependencies only
 COPY package*.json ./
-RUN npm ci --omit=dev && npm cache clean --force
+RUN npm ci --omit=dev --legacy-peer-deps && npm cache clean --force
 
-# Copy built application
+# Copy Prisma schema for runtime
+COPY prisma ./prisma
 COPY --from=builder /app/dist/apps/api ./dist/apps/api
 COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
