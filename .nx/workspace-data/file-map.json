@@ -78,10 +78,286 @@
           "hash": "3025378044812449119"
         }
       ],
+      "web": [
+        {
+          "file": "apps/web/.swcrc",
+          "hash": "2742566327615098680"
+        },
+        {
+          "file": "apps/web/index.d.ts",
+          "hash": "5498222895072842432"
+        },
+        {
+          "file": "apps/web/next-env.d.ts",
+          "hash": "1320675027584673186"
+        },
+        {
+          "file": "apps/web/next.config.js",
+          "hash": "4550114557194676587",
+          "deps": [
+            "npm:@nx/next"
+          ]
+        },
+        {
+          "file": "apps/web/postcss.config.js",
+          "hash": "4080954692028639031"
+        },
+        {
+          "file": "apps/web/project.json",
+          "hash": "3666953826983028672"
+        },
+        {
+          "file": "apps/web/public/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/public/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/web/src/app/api/hello/route.ts",
+          "hash": "3249501742820612145"
+        },
+        {
+          "file": "apps/web/src/app/api/revalidate/route.ts",
+          "hash": "5956442527680027517",
+          "deps": [
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/global.css",
+          "hash": "15257960221628757377"
+        },
+        {
+          "file": "apps/web/src/app/layout.tsx",
+          "hash": "3199602742003048733"
+        },
+        {
+          "file": "apps/web/src/app/page.module.css",
+          "hash": "4786619528779355986"
+        },
+        {
+          "file": "apps/web/src/app/page.tsx",
+          "hash": "2627764115202523152",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/yellow-books/[id]/page.tsx",
+          "hash": "16359633018563878485",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/yellow-books/page.tsx",
+          "hash": "15652636266188052170",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/yellow-books/search/page.tsx",
+          "hash": "10912523025492389325",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/web/src/components/AutoRefresh.tsx",
+          "hash": "13965017817404845468",
+          "deps": [
+            "npm:react",
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/web/src/components/ClientMap.tsx",
+          "hash": "16638863122329483038",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/web/tailwind.config.js",
+          "hash": "8880217491916646200",
+          "deps": [
+            "npm:@nx/react"
+          ]
+        },
+        {
+          "file": "apps/web/tsconfig.json",
+          "hash": "13566295045191207177"
+        }
+      ],
+      "config": [
+        {
+          "file": "libs/config/README.md",
+          "hash": "14955561250727493101"
+        },
+        {
+          "file": "libs/config/eslint.config.mjs",
+          "hash": "4313095032450400554",
+          "deps": [
+            [
+              "npm:jsonc-eslint-parser",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "libs/config/jest.config.ts",
+          "hash": "3227280384787045958"
+        },
+        {
+          "file": "libs/config/package.json",
+          "hash": "9812909876067885362",
+          "deps": [
+            "npm:tslib"
+          ]
+        },
+        {
+          "file": "libs/config/project.json",
+          "hash": "16381604864888966786"
+        },
+        {
+          "file": "libs/config/src/index.ts",
+          "hash": "15675278643505422157"
+        },
+        {
+          "file": "libs/config/src/lib/config.spec.ts",
+          "hash": "14624665836767688274"
+        },
+        {
+          "file": "libs/config/src/lib/config.ts",
+          "hash": "9093647614144405902"
+        },
+        {
+          "file": "libs/config/tsconfig.json",
+          "hash": "12975668481162286788"
+        },
+        {
+          "file": "libs/config/tsconfig.lib.json",
+          "hash": "3632393694954060084"
+        },
+        {
+          "file": "libs/config/tsconfig.spec.json",
+          "hash": "6622138706846345436"
+        }
+      ],
+      "web-e2e": [
+        {
+          "file": "apps/web-e2e/playwright.config.ts",
+          "hash": "14888424123113362402",
+          "deps": [
+            "npm:@playwright/test",
+            "npm:@nx/playwright",
+            "npm:@nx/devkit"
+          ]
+        },
+        {
+          "file": "apps/web-e2e/project.json",
+          "hash": "236892884893949848"
+        },
+        {
+          "file": "apps/web-e2e/src/example.spec.ts",
+          "hash": "16019101014373124625",
+          "deps": [
+            "npm:@playwright/test"
+          ]
+        },
+        {
+          "file": "apps/web-e2e/tsconfig.json",
+          "hash": "18107275616570252607"
+        }
+      ],
+      "contract": [
+        {
+          "file": "libs/contract/README.md",
+          "hash": "1976666744497467056"
+        },
+        {
+          "file": "libs/contract/eslint.config.mjs",
+          "hash": "4313095032450400554",
+          "deps": [
+            [
+              "npm:jsonc-eslint-parser",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "libs/contract/jest.config.ts",
+          "hash": "8011514303017277884"
+        },
+        {
+          "file": "libs/contract/package.json",
+          "hash": "17413602914407052347",
+          "deps": [
+            "npm:tslib",
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "libs/contract/project.json",
+          "hash": "3996175964783018326"
+        },
+        {
+          "file": "libs/contract/src/index.ts",
+          "hash": "8148684552411797323"
+        },
+        {
+          "file": "libs/contract/src/lib/contract.spec.ts",
+          "hash": "8226632352898619642"
+        },
+        {
+          "file": "libs/contract/src/lib/contract.ts",
+          "hash": "17751421000762628246"
+        },
+        {
+          "file": "libs/contract/src/lib/yellow-book.schema.ts",
+          "hash": "1736489317347908720",
+          "deps": [
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "libs/contract/tsconfig.json",
+          "hash": "12975668481162286788"
+        },
+        {
+          "file": "libs/contract/tsconfig.lib.json",
+          "hash": "3632393694954060084"
+        },
+        {
+          "file": "libs/contract/tsconfig.spec.json",
+          "hash": "6622138706846345436"
+        }
+      ],
       "yellowbook": [
         {
+          "file": ".dockerignore",
+          "hash": "8851922581480495384"
+        },
+        {
+          "file": ".env.example",
+          "hash": "15232521647267034963"
+        },
+        {
           "file": ".github/workflows/ci.yml",
-          "hash": "5786767663078140078"
+          "hash": "15303743603852641411"
+        },
+        {
+          "file": ".github/workflows/ecr-deploy.yml.template",
+          "hash": "6565616885073839828"
         },
         {
           "file": ".gitignore",
@@ -104,16 +380,48 @@
           "hash": "11911801181309274062"
         },
         {
+          "file": "CHECKLIST.md",
+          "hash": "16949417348599398299"
+        },
+        {
+          "file": "CONTRIBUTING.md",
+          "hash": "11995610206943671861"
+        },
+        {
+          "file": "Dockerfile.api",
+          "hash": "17201688986477208623"
+        },
+        {
+          "file": "Dockerfile.web",
+          "hash": "14376243339924058178"
+        },
+        {
           "file": "Procfile",
           "hash": "4363396833340048260"
         },
         {
           "file": "README.md",
-          "hash": "12667547096946583418"
+          "hash": "14775328211320251948"
+        },
+        {
+          "file": "SETUP-COMPLETE.md",
+          "hash": "3299460137104292257"
+        },
+        {
+          "file": "docker-compose.yml",
+          "hash": "1931525608808752493"
+        },
+        {
+          "file": "docs/AWS-ECR-SETUP.md",
+          "hash": "2051043033459904887"
+        },
+        {
+          "file": "docs/LOCAL-TESTING.md",
+          "hash": "17623058644909366332"
         },
         {
           "file": "eslint.config.mjs",
-          "hash": "10770449096712831357",
+          "hash": "11976394093720419139",
           "deps": [
             "npm:@nx/eslint-plugin"
           ]
@@ -135,7 +443,7 @@
         },
         {
           "file": "nx.json",
-          "hash": "8685246744383510712"
+          "hash": "5182703343665704927"
         },
         {
           "file": "package-lock.json",
@@ -244,6 +552,14 @@
           "hash": "11336644058990391532"
         },
         {
+          "file": "scripts/docker-test.ps1",
+          "hash": "6886778413100449302"
+        },
+        {
+          "file": "scripts/docker-test.sh",
+          "hash": "17228421177789777322"
+        },
+        {
           "file": "scripts/reset-db.ts",
           "hash": "11833771213831784402",
           "deps": [
@@ -257,269 +573,6 @@
         {
           "file": "vercel.json",
           "hash": "5641982138798124953"
-        }
-      ],
-      "web": [
-        {
-          "file": "apps/web/.swcrc",
-          "hash": "2742566327615098680"
-        },
-        {
-          "file": "apps/web/index.d.ts",
-          "hash": "5498222895072842432"
-        },
-        {
-          "file": "apps/web/next-env.d.ts",
-          "hash": "1320675027584673186"
-        },
-        {
-          "file": "apps/web/next.config.js",
-          "hash": "8549319872288348849",
-          "deps": [
-            "npm:@nx/next"
-          ]
-        },
-        {
-          "file": "apps/web/postcss.config.js",
-          "hash": "4080954692028639031"
-        },
-        {
-          "file": "apps/web/project.json",
-          "hash": "3666953826983028672"
-        },
-        {
-          "file": "apps/web/public/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/web/public/favicon.ico",
-          "hash": "9303420814833116677"
-        },
-        {
-          "file": "apps/web/src/app/api/hello/route.ts",
-          "hash": "495073956729887886"
-        },
-        {
-          "file": "apps/web/src/app/api/revalidate/route.ts",
-          "hash": "5956442527680027517",
-          "deps": [
-            "npm:next"
-          ]
-        },
-        {
-          "file": "apps/web/src/app/global.css",
-          "hash": "15257960221628757377"
-        },
-        {
-          "file": "apps/web/src/app/layout.tsx",
-          "hash": "3199602742003048733"
-        },
-        {
-          "file": "apps/web/src/app/page.module.css",
-          "hash": "4786619528779355986"
-        },
-        {
-          "file": "apps/web/src/app/page.tsx",
-          "hash": "2627764115202523152",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/web/src/app/yellow-books/[id]/page.tsx",
-          "hash": "16359633018563878485",
-          "deps": [
-            "npm:react",
-            "npm:next",
-            "contract"
-          ]
-        },
-        {
-          "file": "apps/web/src/app/yellow-books/page.tsx",
-          "hash": "15652636266188052170",
-          "deps": [
-            "npm:react",
-            "npm:next",
-            "contract"
-          ]
-        },
-        {
-          "file": "apps/web/src/app/yellow-books/search/page.tsx",
-          "hash": "10912523025492389325",
-          "deps": [
-            "npm:react",
-            "npm:next",
-            "contract"
-          ]
-        },
-        {
-          "file": "apps/web/src/components/AutoRefresh.tsx",
-          "hash": "13965017817404845468",
-          "deps": [
-            "npm:react",
-            "npm:next"
-          ]
-        },
-        {
-          "file": "apps/web/src/components/ClientMap.tsx",
-          "hash": "16638863122329483038",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/web/tailwind.config.js",
-          "hash": "8880217491916646200",
-          "deps": [
-            "npm:@nx/react"
-          ]
-        },
-        {
-          "file": "apps/web/tsconfig.json",
-          "hash": "13566295045191207177"
-        }
-      ],
-      "web-e2e": [
-        {
-          "file": "apps/web-e2e/playwright.config.ts",
-          "hash": "14888424123113362402",
-          "deps": [
-            "npm:@playwright/test",
-            "npm:@nx/playwright",
-            "npm:@nx/devkit"
-          ]
-        },
-        {
-          "file": "apps/web-e2e/project.json",
-          "hash": "236892884893949848"
-        },
-        {
-          "file": "apps/web-e2e/src/example.spec.ts",
-          "hash": "16019101014373124625",
-          "deps": [
-            "npm:@playwright/test"
-          ]
-        },
-        {
-          "file": "apps/web-e2e/tsconfig.json",
-          "hash": "18107275616570252607"
-        }
-      ],
-      "config": [
-        {
-          "file": "libs/config/README.md",
-          "hash": "14955561250727493101"
-        },
-        {
-          "file": "libs/config/eslint.config.mjs",
-          "hash": "4313095032450400554",
-          "deps": [
-            [
-              "npm:jsonc-eslint-parser",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": "libs/config/jest.config.ts",
-          "hash": "3227280384787045958"
-        },
-        {
-          "file": "libs/config/package.json",
-          "hash": "9812909876067885362",
-          "deps": [
-            "npm:tslib"
-          ]
-        },
-        {
-          "file": "libs/config/project.json",
-          "hash": "16381604864888966786"
-        },
-        {
-          "file": "libs/config/src/index.ts",
-          "hash": "15675278643505422157"
-        },
-        {
-          "file": "libs/config/src/lib/config.spec.ts",
-          "hash": "14624665836767688274"
-        },
-        {
-          "file": "libs/config/src/lib/config.ts",
-          "hash": "9093647614144405902"
-        },
-        {
-          "file": "libs/config/tsconfig.json",
-          "hash": "12975668481162286788"
-        },
-        {
-          "file": "libs/config/tsconfig.lib.json",
-          "hash": "3632393694954060084"
-        },
-        {
-          "file": "libs/config/tsconfig.spec.json",
-          "hash": "6622138706846345436"
-        }
-      ],
-      "contract": [
-        {
-          "file": "libs/contract/README.md",
-          "hash": "1976666744497467056"
-        },
-        {
-          "file": "libs/contract/eslint.config.mjs",
-          "hash": "4313095032450400554",
-          "deps": [
-            [
-              "npm:jsonc-eslint-parser",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": "libs/contract/jest.config.ts",
-          "hash": "8011514303017277884"
-        },
-        {
-          "file": "libs/contract/package.json",
-          "hash": "7267137677274756388",
-          "deps": [
-            "npm:tslib"
-          ]
-        },
-        {
-          "file": "libs/contract/project.json",
-          "hash": "3996175964783018326"
-        },
-        {
-          "file": "libs/contract/src/index.ts",
-          "hash": "8148684552411797323"
-        },
-        {
-          "file": "libs/contract/src/lib/contract.spec.ts",
-          "hash": "8226632352898619642"
-        },
-        {
-          "file": "libs/contract/src/lib/contract.ts",
-          "hash": "17751421000762628246"
-        },
-        {
-          "file": "libs/contract/src/lib/yellow-book.schema.ts",
-          "hash": "786277997540721889",
-          "deps": [
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "libs/contract/tsconfig.json",
-          "hash": "12975668481162286788"
-        },
-        {
-          "file": "libs/contract/tsconfig.lib.json",
-          "hash": "3632393694954060084"
-        },
-        {
-          "file": "libs/contract/tsconfig.spec.json",
-          "hash": "6622138706846345436"
         }
       ]
     }
