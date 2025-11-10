@@ -1,0 +1,105 @@
+# This workflow is a template for AWS ECR deployment
+# You need to configure AWS credentials and ECR repositories before using this
+
+name: Deploy to AWS ECR
+
+on:
+  push:
+    branches: [main]
+    tags:
+      - 'v*'
+
+env:
+  AWS_REGION: us-east-1  # Change to your region
+  ECR_REPOSITORY_API: yellowbook-api  # Change to your ECR repo name
+  ECR_REPOSITORY_WEB: yellowbook-web  # Change to your ECR repo name
+
+jobs:
+  deploy-to-ecr:
+    name: Build and Push to ECR
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        service: [api, web]
+    
+    permissions:
+      contents: read
+      id-token: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          # Option 1: Use OIDC (Recommended)
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ env.AWS_REGION }}
+          
+          # Option 2: Use Access Keys (Less secure, uncomment if needed)
+          # aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          # aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set ECR repository name
+        id: ecr-repo
+        run: |
+          if [ "${{ matrix.service }}" == "api" ]; then
+            echo "repository=${{ env.ECR_REPOSITORY_API }}" >> $GITHUB_OUTPUT
+          else
+            echo "repository=${{ env.ECR_REPOSITORY_WEB }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Extract metadata (tags, labels)
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.login-ecr.outputs.registry }}/${{ steps.ecr-repo.outputs.repository }}
+          tags: |
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push Docker image to ECR
+        id: build-and-push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile.${{ matrix.service }}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            NODE_ENV=production
+
+      - name: Generate deployment summary
+        run: |
+          echo "# 🚀 ECR Deployment Summary - ${{ matrix.service }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "## Image Details" >> $GITHUB_STEP_SUMMARY
+          echo "- **Service:** ${{ matrix.service }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Registry:** ${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Repository:** ${{ steps.ecr-repo.outputs.repository }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Image Digest:** ${{ steps.build-and-push.outputs.digest }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Tags:**" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "${{ steps.meta.outputs.tags }}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+      - name: Image scan results
+        run: |
+          # Optional: Add ECR image scanning results
+          echo "Image pushed successfully to ECR"
+          echo "Image: ${{ steps.login-ecr.outputs.registry }}/${{ steps.ecr-repo.outputs.repository }}:${{ github.sha }}"

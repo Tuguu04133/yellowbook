@@ -1,0 +1,53 @@
+# Multi-stage build for API
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY nx.json ./
+COPY tsconfig.base.json ./
+
+# Copy workspace files
+COPY apps/api ./apps/api
+COPY libs ./libs
+COPY prisma ./prisma
+
+# Install dependencies
+RUN npm ci
+
+# Generate Prisma Client
+RUN npx prisma generate
+
+# Build the API
+RUN npx nx build api --prod
+
+# Production stage
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Install production dependencies only
+COPY package*.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+
+# Copy built application
+COPY --from=builder /app/dist/apps/api ./dist/apps/api
+COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
+COPY prisma ./prisma
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3333
+ENV HOST=0.0.0.0
+
+# Expose port
+EXPOSE 3333
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:3333/', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+
+# Start the application
+CMD ["node", "dist/apps/api/main.js"]

@@ -11,7 +11,7 @@ async function searchYellowBooks(query: string): Promise<YellowBookEntry[]> {
   
   try {
     const res = await fetch(`${apiUrl}/yellow-books`, {
-      cache: 'no-store', //  Үргэлж шинэ өгөгдөл
+      cache: 'no-store',
     });
     
     if (!res.ok) {

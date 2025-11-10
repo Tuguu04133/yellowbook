@@ -1,16 +1,18 @@
 import { Suspense } from 'react';
 import Link from 'next/link';
 import { YellowBookEntry } from '@yellowbook/contract';
+import { AutoRefresh } from '../../components/AutoRefresh';
 
-// 60 секунд бүр автомат шинэчлэгдэнэ
-export const revalidate = 60;
+export const revalidate = 10;
 
 async function getYellowBooks(): Promise<YellowBookEntry[]> {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
   
+
+  
   try {
     const res = await fetch(`${apiUrl}/yellow-books`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 10 },
     });
     
     if (!res.ok) {
@@ -48,7 +50,7 @@ function YellowBooksSkeleton() {
   );
 }
 
-// Async component for yellow books list
+  
 async function YellowBooksList() {
   const books = await getYellowBooks();
   
@@ -94,6 +96,9 @@ async function YellowBooksList() {
 export default function YellowBooksPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-8">
+      {/* ISR revalidate хугацааны дагуу автомат refresh */}
+      <AutoRefresh intervalSeconds={revalidate} />
+      
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <Link
@@ -109,7 +114,7 @@ export default function YellowBooksPage() {
             Байгууллагын жагсаалт
           </h1>
           <p className="text-white/80 text-lg">
-            ISR with 60s revalidation - Automatically updates every minute
+            ISR: {revalidate} секунд cache - Updated: {new Date().toLocaleTimeString('mn-MN')}
           </p>
         </div>
         

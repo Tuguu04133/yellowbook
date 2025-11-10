@@ -11,7 +11,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333';
 export async function generateStaticParams() {
   try {
     const res = await fetch(`${apiUrl}/yellow-books`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 5 },
     });
     
     if (!res.ok) {
@@ -33,7 +33,7 @@ export async function generateStaticParams() {
 async function getYellowBook(id: string): Promise<YellowBookEntry | null> {
   try {
     const res = await fetch(`${apiUrl}/yellow-books/${id}`, {
-      next: { revalidate: 60 },
+      next: { revalidate: 5 },
     });
     
     if (!res.ok) {

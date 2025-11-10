@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    container_name: yellowbook-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: yellowbook
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # API Service
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: yellowbook-api
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/yellowbook
+      PORT: 3333
+      HOST: 0.0.0.0
+      NODE_ENV: production
+    ports:
+      - "3333:3333"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # Web Service
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: yellowbook-web
+    environment:
+      NEXT_PUBLIC_API_URL: http://api:3333
+      PORT: 3000
+      NODE_ENV: production
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

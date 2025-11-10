@@ -15608,7 +15608,17 @@
       },
       {
         "source": "web",
+        "target": "npm:next",
+        "type": "static"
+      },
+      {
+        "source": "web",
         "target": "npm:react",
+        "type": "static"
+      },
+      {
+        "source": "web",
+        "target": "contract",
         "type": "static"
       },
       {
@@ -34784,5 +34794,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1761596903820
+  "computedAt": 1761623729623
 }

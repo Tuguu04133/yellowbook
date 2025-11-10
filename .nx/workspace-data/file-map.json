@@ -49,121 +49,33 @@
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
-      "contract": [
+      "api": [
         {
-          "file": "libs/contract/README.md",
-          "hash": "1976666744497467056"
+          "file": "apps/api/project.json",
+          "hash": "14544981260166641417"
         },
         {
-          "file": "libs/contract/eslint.config.mjs",
-          "hash": "4313095032450400554",
+          "file": "apps/api/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/api/src/main.ts",
+          "hash": "7060853912599634257",
           "deps": [
-            [
-              "npm:jsonc-eslint-parser",
-              "dynamic"
-            ]
+            "npm:dotenv",
+            "npm:express",
+            "npm:cors",
+            "npm:@prisma/client",
+            "contract"
           ]
         },
         {
-          "file": "libs/contract/jest.config.ts",
-          "hash": "8011514303017277884"
+          "file": "apps/api/tsconfig.app.json",
+          "hash": "663763413802756907"
         },
         {
-          "file": "libs/contract/package.json",
-          "hash": "7267137677274756388",
-          "deps": [
-            "npm:tslib"
-          ]
-        },
-        {
-          "file": "libs/contract/project.json",
-          "hash": "3996175964783018326"
-        },
-        {
-          "file": "libs/contract/src/index.ts",
-          "hash": "8148684552411797323"
-        },
-        {
-          "file": "libs/contract/src/lib/contract.spec.ts",
-          "hash": "8226632352898619642"
-        },
-        {
-          "file": "libs/contract/src/lib/contract.ts",
-          "hash": "17751421000762628246"
-        },
-        {
-          "file": "libs/contract/src/lib/yellow-book.schema.ts",
-          "hash": "786277997540721889",
-          "deps": [
-            "npm:zod"
-          ]
-        },
-        {
-          "file": "libs/contract/tsconfig.json",
-          "hash": "12975668481162286788"
-        },
-        {
-          "file": "libs/contract/tsconfig.lib.json",
-          "hash": "3632393694954060084"
-        },
-        {
-          "file": "libs/contract/tsconfig.spec.json",
-          "hash": "6622138706846345436"
-        }
-      ],
-      "config": [
-        {
-          "file": "libs/config/README.md",
-          "hash": "14955561250727493101"
-        },
-        {
-          "file": "libs/config/eslint.config.mjs",
-          "hash": "4313095032450400554",
-          "deps": [
-            [
-              "npm:jsonc-eslint-parser",
-              "dynamic"
-            ]
-          ]
-        },
-        {
-          "file": "libs/config/jest.config.ts",
-          "hash": "3227280384787045958"
-        },
-        {
-          "file": "libs/config/package.json",
-          "hash": "9812909876067885362",
-          "deps": [
-            "npm:tslib"
-          ]
-        },
-        {
-          "file": "libs/config/project.json",
-          "hash": "16381604864888966786"
-        },
-        {
-          "file": "libs/config/src/index.ts",
-          "hash": "15675278643505422157"
-        },
-        {
-          "file": "libs/config/src/lib/config.spec.ts",
-          "hash": "14624665836767688274"
-        },
-        {
-          "file": "libs/config/src/lib/config.ts",
-          "hash": "9093647614144405902"
-        },
-        {
-          "file": "libs/config/tsconfig.json",
-          "hash": "12975668481162286788"
-        },
-        {
-          "file": "libs/config/tsconfig.lib.json",
-          "hash": "3632393694954060084"
-        },
-        {
-          "file": "libs/config/tsconfig.spec.json",
-          "hash": "6622138706846345436"
+          "file": "apps/api/tsconfig.json",
+          "hash": "3025378044812449119"
         }
       ],
       "yellowbook": [
@@ -197,7 +109,7 @@
         },
         {
           "file": "README.md",
-          "hash": "14298804728847164428"
+          "hash": "12667547096946583418"
         },
         {
           "file": "eslint.config.mjs",
@@ -283,6 +195,10 @@
             "npm:react-dom",
             "npm:zod"
           ]
+        },
+        {
+          "file": "perf.md",
+          "hash": "10284624852700502376"
         },
         {
           "file": "prisma/dev.db",
@@ -384,6 +300,13 @@
           "hash": "495073956729887886"
         },
         {
+          "file": "apps/web/src/app/api/revalidate/route.ts",
+          "hash": "5956442527680027517",
+          "deps": [
+            "npm:next"
+          ]
+        },
+        {
           "file": "apps/web/src/app/global.css",
           "hash": "15257960221628757377"
         },
@@ -397,7 +320,49 @@
         },
         {
           "file": "apps/web/src/app/page.tsx",
-          "hash": "1874354643773783878",
+          "hash": "2627764115202523152",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/yellow-books/[id]/page.tsx",
+          "hash": "16359633018563878485",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/yellow-books/page.tsx",
+          "hash": "15652636266188052170",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/yellow-books/search/page.tsx",
+          "hash": "10912523025492389325",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/web/src/components/AutoRefresh.tsx",
+          "hash": "13965017817404845468",
+          "deps": [
+            "npm:react",
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/web/src/components/ClientMap.tsx",
+          "hash": "16638863122329483038",
           "deps": [
             "npm:react"
           ]
@@ -440,33 +405,121 @@
           "hash": "18107275616570252607"
         }
       ],
-      "api": [
+      "config": [
         {
-          "file": "apps/api/project.json",
-          "hash": "14544981260166641417"
+          "file": "libs/config/README.md",
+          "hash": "14955561250727493101"
         },
         {
-          "file": "apps/api/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/api/src/main.ts",
-          "hash": "7060853912599634257",
+          "file": "libs/config/eslint.config.mjs",
+          "hash": "4313095032450400554",
           "deps": [
-            "npm:dotenv",
-            "npm:express",
-            "npm:cors",
-            "npm:@prisma/client",
-            "contract"
+            [
+              "npm:jsonc-eslint-parser",
+              "dynamic"
+            ]
           ]
         },
         {
-          "file": "apps/api/tsconfig.app.json",
-          "hash": "663763413802756907"
+          "file": "libs/config/jest.config.ts",
+          "hash": "3227280384787045958"
         },
         {
-          "file": "apps/api/tsconfig.json",
-          "hash": "3025378044812449119"
+          "file": "libs/config/package.json",
+          "hash": "9812909876067885362",
+          "deps": [
+            "npm:tslib"
+          ]
+        },
+        {
+          "file": "libs/config/project.json",
+          "hash": "16381604864888966786"
+        },
+        {
+          "file": "libs/config/src/index.ts",
+          "hash": "15675278643505422157"
+        },
+        {
+          "file": "libs/config/src/lib/config.spec.ts",
+          "hash": "14624665836767688274"
+        },
+        {
+          "file": "libs/config/src/lib/config.ts",
+          "hash": "9093647614144405902"
+        },
+        {
+          "file": "libs/config/tsconfig.json",
+          "hash": "12975668481162286788"
+        },
+        {
+          "file": "libs/config/tsconfig.lib.json",
+          "hash": "3632393694954060084"
+        },
+        {
+          "file": "libs/config/tsconfig.spec.json",
+          "hash": "6622138706846345436"
+        }
+      ],
+      "contract": [
+        {
+          "file": "libs/contract/README.md",
+          "hash": "1976666744497467056"
+        },
+        {
+          "file": "libs/contract/eslint.config.mjs",
+          "hash": "4313095032450400554",
+          "deps": [
+            [
+              "npm:jsonc-eslint-parser",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "libs/contract/jest.config.ts",
+          "hash": "8011514303017277884"
+        },
+        {
+          "file": "libs/contract/package.json",
+          "hash": "7267137677274756388",
+          "deps": [
+            "npm:tslib"
+          ]
+        },
+        {
+          "file": "libs/contract/project.json",
+          "hash": "3996175964783018326"
+        },
+        {
+          "file": "libs/contract/src/index.ts",
+          "hash": "8148684552411797323"
+        },
+        {
+          "file": "libs/contract/src/lib/contract.spec.ts",
+          "hash": "8226632352898619642"
+        },
+        {
+          "file": "libs/contract/src/lib/contract.ts",
+          "hash": "17751421000762628246"
+        },
+        {
+          "file": "libs/contract/src/lib/yellow-book.schema.ts",
+          "hash": "786277997540721889",
+          "deps": [
+            "npm:zod"
+          ]
+        },
+        {
+          "file": "libs/contract/tsconfig.json",
+          "hash": "12975668481162286788"
+        },
+        {
+          "file": "libs/contract/tsconfig.lib.json",
+          "hash": "3632393694954060084"
+        },
+        {
+          "file": "libs/contract/tsconfig.spec.json",
+          "hash": "6622138706846345436"
         }
       ]
     }
