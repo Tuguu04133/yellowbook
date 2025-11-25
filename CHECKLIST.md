@@ -33,73 +33,73 @@ This checklist helps you verify that all assignment requirements are completed.
   .\scripts\docker-test.ps1 api
   ```
 
-- [ ] Test Web Docker build locally
+- [ ] Web Docker build тест
   ```bash
   .\scripts\docker-test.ps1 web
   ```
 
-- [ ] Test with Docker Compose
+- [ ] Docker Compose тест
   ```bash
   docker-compose up --build
   ```
 
-- [ ] Verify health checks work
-  - [ ] API health: `http://localhost:3333/`
-  - [ ] Web health: `http://localhost:3000/`
+- [ ] Health checks шалгах
+  - [ ] API: `http://localhost:3333/`
+  - [ ] Web: `http://localhost:3000/`
 
-- [ ] Test API endpoints
+- [ ] API endpoints тест
   - [ ] GET `/yellow-books`
   - [ ] GET `/yellow-books/:id`
   - [ ] POST `/yellow-books`
 
-### ✅ ECR Repos + Policies (20 points)
+### ⏳ ECR Repos + Policies (20 оноо)
 
-⚠️ **DO THIS PART - AWS Setup Required**
+⚠️ **ЭНЭ ХЭСГИЙГ ХИЙ - AWS Setup хэрэгтэй**
 
-- [ ] Create AWS ECR repositories
+- [ ] AWS ECR repositories үүсгэх
   - [ ] `yellowbook-api` repository
   - [ ] `yellowbook-web` repository
   
-- [ ] Configure repository settings
-  - [ ] Enable scan on push
-  - [ ] Set encryption (AES256 or KMS)
+- [ ] Repository тохиргоо
+  - [ ] Scan on push идэвхжүүлэх
+  - [ ] Encryption тохируулах
   
-- [ ] Set lifecycle policies
-  - [ ] Keep last 5 images (cost optimization)
-  - [ ] Auto-delete old images
+- [ ] Lifecycle policies
+  - [ ] Сүүлийн 5 image хадгалах
+  - [ ] Хуучин images автоматаар устгах
   
-- [ ] Configure IAM permissions
-  - [ ] Option A: Create IAM user with ECR permissions
-  - [ ] Option B: Set up OIDC with GitHub Actions (recommended)
+- [ ] IAM permissions
+  - [ ] IAM user үүсгэх эсвэл
+  - [ ] OIDC тохируулах (recommended)
   
-- [ ] Add GitHub secrets
-  - [ ] `AWS_ROLE_TO_ASSUME` (OIDC) or
+- [ ] GitHub secrets нэмэх
+  - [ ] `AWS_ROLE_TO_ASSUME` эсвэл
   - [ ] `AWS_ACCESS_KEY_ID` + `AWS_SECRET_ACCESS_KEY`
   - [ ] `AWS_REGION`
 
-- [ ] Enable ECR workflow
+- [ ] ECR workflow идэвхжүүлэх
   ```bash
   mv .github/workflows/ecr-deploy.yml.template .github/workflows/ecr-deploy.yml
   ```
 
-### ✅ CI Build/Push (30 points)
+### ✅ CI Build/Push (30 оноо)
 
-- [x] Create GitHub Actions workflow
-  - [x] Trigger on push to main/develop
-  - [x] Trigger on pull requests
-  - [x] Code quality checks (lint, format, type-check)
-  - [x] Run tests
-  - [x] Build affected projects
+- [x] GitHub Actions workflow
+  - [x] Main/develop руу push
+  - [x] Pull requests дээр ажилла
+  - [x] Code quality checks
+  - [x] Tests ажиллуулна
+  - [x] Build хийнэ
 
 - [x] Docker build and push
-  - [x] Build API Docker image
-  - [x] Build Web Docker image
-  - [x] Push to GitHub Container Registry (GHCR)
-  - [x] Tag with commit SHA
-  - [x] Tag with branch name
-  - [x] Tag with 'latest' for main branch
+  - [x] API Docker image build
+  - [x] Web Docker image build
+  - [x] GHCR руу push
+  - [x] SHA tag
+  - [x] Branch tag
+  - [x] 'latest' tag
 
-- [ ] Push code to GitHub
+- [ ] GitHub руу push хийх
   ```bash
   git add .
   git commit -m "feat: add Docker support and CI/CD pipeline"
@@ -201,10 +201,10 @@ Before submitting:
 Run these to verify everything works:
 
 ```bash
-# 1. Local build test
+# 1. Local build
 .\scripts\docker-test.ps1 all
 
-# 2. Docker Compose test
+# 2. Docker Compose
 docker-compose up -d
 curl http://localhost:3333/
 curl http://localhost:3000/
@@ -213,53 +213,41 @@ docker-compose down
 # 3. Code quality
 npm run lint
 npm run format:check
-npm run type-check
 
 # 4. Build
 npx nx run-many -t build
 
-# 5. Git push (triggers CI)
+# 5. Git push (CI ажиллана)
 git add .
 git commit -m "feat: complete assignment"
 git push origin main
 
-# 6. Check CI
-# Visit: https://github.com/Tuguu04133/yellowbook/actions
-
-# 7. Check GHCR images
-# Visit: https://github.com/Tuguu04133?tab=packages
+# 6. CI шалгах
+# https://github.com/Tuguu04133/yellowbook/actions
 ```
 
-## 📊 Points Breakdown
+## Оноо
 
-| Category | Points | Status |
+| Даалгавар | Оноо | Статус |
 |----------|--------|--------|
 | Dockerfiles | 30 | ✅ |
-| Local sanity | 10 | ⏳ (Test locally) |
-| ECR repos+policies | 20 | ⏳ (AWS setup needed) |
+| Local sanity | 10 | ⏳ |
+| ECR repos | 20 | ⏳ |
 | CI build/push | 30 | ✅ |
 | Docs | 10 | ✅ |
 | **Subtotal** | **100** | |
 | **Bonus** | **+10** | ✅ |
 | **Total** | **110** | |
 
-## 📅 Next Week: EKS Deployment
+## Дараагийн долоо хоног
 
-After this assignment, you'll be ready for:
+EKS deployment:
+- EKS cluster үүсгэх
+- ECR-с Kubernetes руу deploy хийх
+- Ingress, load balancer
+- Auto-scaling
+- Monitoring
 
-- Creating EKS cluster
-- Deploying from ECR to Kubernetes
-- Setting up ingress and load balancer
-- Configuring auto-scaling
-- Monitoring and logging
+---
 
-## 🎉 Completion
-
-Once all checkboxes are marked:
-
-1. Submit repository link
-2. Submit CI run link showing green build
-3. Submit ECR screenshots (3 images)
-4. Verify README badge is visible
-
-**Good luck! 🚀**
+**Амжилт хүсье! 🚀**

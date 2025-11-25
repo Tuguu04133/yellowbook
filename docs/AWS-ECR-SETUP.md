@@ -21,44 +21,40 @@ To minimize costs:
 - Use lifecycle policies to auto-delete
 - Monitor AWS billing dashboard
 
-## Step 1: Create ECR Repositories
+## 1-р алхам: ECR Repository үүсгэх
 
-### Using AWS CLI
+### AWS CLI ашиглах
 
 ```bash
-# Set your AWS region
+# Region-оо сонго (жишээ: us-east-1)
 export AWS_REGION=us-east-1
 
-# Create API repository
+# API repository үүсгэх
 aws ecr create-repository \
     --repository-name yellowbook-api \
     --region $AWS_REGION \
-    --image-scanning-configuration scanOnPush=true \
-    --encryption-configuration encryptionType=AES256
+    --image-scanning-configuration scanOnPush=true
 
-# Create Web repository
+# Web repository үүсгэх
 aws ecr create-repository \
     --repository-name yellowbook-web \
     --region $AWS_REGION \
-    --image-scanning-configuration scanOnPush=true \
-    --encryption-configuration encryptionType=AES256
+    --image-scanning-configuration scanOnPush=true
 ```
 
-### Using AWS Console
+### AWS Console ашиглах (Илүү хялбар)
 
-1. Go to Amazon ECR in AWS Console
-2. Click "Create repository"
-3. Repository name: `yellowbook-api`
-4. Enable "Scan on push"
-5. Enable "KMS encryption" (optional)
-6. Click "Create repository"
-7. Repeat for `yellowbook-web`
+1. AWS Console руу нэвтэр
+2. ECR хайж нээ
+3. "Create repository" дар
+4. Нэр: `yellowbook-api`
+5. "Scan on push" идэвхжүүл
+6. "Create repository" дар
+7. `yellowbook-web`-д давтах
 
-## Step 2: Set Up Lifecycle Policies
+## 2-р алхам: Lifecycle Policy (Хуучин image устгах)
 
-Create lifecycle policies to automatically delete old images and reduce costs:
-
-### API Repository Lifecycle Policy
+Хуучин images автоматаар устгахын тулд:
 
 ```json
 {
@@ -79,27 +75,27 @@ Create lifecycle policies to automatically delete old images and reduce costs:
 }
 ```
 
-Apply the policy:
+Policy-г ашиглах:
 
 ```bash
 aws ecr put-lifecycle-policy \
     --repository-name yellowbook-api \
     --lifecycle-policy-text file://lifecycle-policy.json
+
+# yellowbook-web-д ч мөн адил хий
 ```
 
-Repeat for `yellowbook-web`.
+## 3-р алхам: GitHub-тай холбох
 
-## Step 3: Set Up Repository Permissions
+### Хувилбар A: IAM User (Хялбар гэхдээ анхаарал хэрэгтэй)
 
-### Option A: IAM User (Simpler, less secure)
-
-1. Create IAM user with ECR permissions:
+1. IAM user үүсгэх:
 
 ```bash
 aws iam create-user --user-name github-actions-ecr
 ```
 
-2. Attach ECR permissions:
+2. ECR эрх өгөх:
 
 ```bash
 aws iam attach-user-policy \
@@ -107,103 +103,42 @@ aws iam attach-user-policy \
     --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser
 ```
 
-3. Create access keys:
+3. Access key авах:
 
 ```bash
 aws iam create-access-key --user-name github-actions-ecr
 ```
 
-4. Save the `AccessKeyId` and `SecretAccessKey`
+4. `AccessKeyId` болон `SecretAccessKey`-г хадгал
 
-### Option B: OIDC (Recommended, more secure)
+## 4-р алхам: GitHub Secrets нэмэх
 
-1. Create an OIDC provider for GitHub:
+### IAM User ашигласан бол:
 
-```bash
-aws iam create-open-id-connect-provider \
-    --url https://token.actions.githubusercontent.com \
-    --client-id-list sts.amazonaws.com \
-    --thumbprint-list 6938fd4d98bab03faadb97b34396831e3780aea1
-```
+1. GitHub repository -> Settings -> Secrets and variables -> Actions
+2. Secrets нэм:
+   - `AWS_ACCESS_KEY_ID`: Таны access key
+   - `AWS_SECRET_ACCESS_KEY`: Таны secret key
+   - `AWS_REGION`: `us-east-1` (эсвэл таны region)
 
-2. Create an IAM role for GitHub Actions:
+## 5-р алхам: ECR Workflow идэвхжүүлэх
 
-Create `trust-policy.json`:
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "Federated": "arn:aws:iam::YOUR_ACCOUNT_ID:oidc-provider/token.actions.githubusercontent.com"
-      },
-      "Action": "sts:AssumeRoleWithWebIdentity",
-      "Condition": {
-        "StringEquals": {
-          "token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
-        },
-        "StringLike": {
-          "token.actions.githubusercontent.com:sub": "repo:YOUR_GITHUB_USERNAME/yellowbook:*"
-        }
-      }
-    }
-  ]
-}
-```
-
-```bash
-aws iam create-role \
-    --role-name GitHubActionsECRRole \
-    --assume-role-policy-document file://trust-policy.json
-```
-
-3. Attach ECR permissions:
-
-```bash
-aws iam attach-role-policy \
-    --role-name GitHubActionsECRRole \
-    --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser
-```
-
-## Step 4: Configure GitHub Secrets
-
-### For Option A (IAM User):
-
-1. Go to your GitHub repository
-2. Settings → Secrets and variables → Actions
-3. Add secrets:
-   - `AWS_ACCESS_KEY_ID`: Your access key ID
-   - `AWS_SECRET_ACCESS_KEY`: Your secret access key
-   - `AWS_REGION`: `us-east-1` (or your region)
-
-### For Option B (OIDC):
-
-1. Add secret:
-   - `AWS_ROLE_TO_ASSUME`: `arn:aws:iam::YOUR_ACCOUNT_ID:role/GitHubActionsECRRole`
-   - `AWS_REGION`: `us-east-1` (or your region)
-
-## Step 5: Enable ECR Workflow
-
-1. Rename the template:
+1. Template-г солих:
 
 ```bash
 mv .github/workflows/ecr-deploy.yml.template .github/workflows/ecr-deploy.yml
 ```
 
-2. Update environment variables in the workflow:
+2. Workflow файлд region-оо заа:
 
 ```yaml
 env:
-  AWS_REGION: us-east-1  # Your region
+  AWS_REGION: us-east-
   ECR_REPOSITORY_API: yellowbook-api
   ECR_REPOSITORY_WEB: yellowbook-web
 ```
 
-3. Choose authentication method (comment/uncomment lines in workflow)
-
-4. Commit and push:
+3. Commit хийж push хий:
 
 ```bash
 git add .github/workflows/ecr-deploy.yml
@@ -211,172 +146,133 @@ git commit -m "feat: enable ECR deployment"
 git push
 ```
 
-## Step 6: Verify Deployment
+## 6-р алхам: Шалгах
 
-1. Check GitHub Actions:
-   - Go to Actions tab in your repository
-   - Look for "Deploy to AWS ECR" workflow
-   - Verify it runs successfully
+1. GitHub Actions шалга:
+   - Actions tab руу ор
+   - "Deploy to AWS ECR" workflow-г хай
+   - Амжилттай ажилласан эсэхийг үз
 
-2. Check ECR repositories:
+2. ECR repositories шалга:
 
 ```bash
-# List images in API repository
+# API repository images
 aws ecr describe-images \
     --repository-name yellowbook-api \
-    --region $AWS_REGION
+    --region us-east-1
 
-# List images in Web repository
+# Web repository images
 aws ecr describe-images \
     --repository-name yellowbook-web \
-    --region $AWS_REGION
+    --region us-east-1
 ```
 
-3. Get specific image with SHA tag:
+## 7-р алхам: Screenshot авах (Даалгаварт хэрэгтэй)
 
-```bash
-# Get image URI
-aws ecr describe-images \
-    --repository-name yellowbook-api \
-    --image-ids imageTag=main-<commit-sha> \
-    --region $AWS_REGION
-```
-
-## Step 7: Screenshots for Deliverables
-
-Take screenshots of:
+Дараах screenshots-уудыг ав:
 
 1. **ECR Repository List**
    - AWS Console → ECR → Repositories
-   - Show both `yellowbook-api` and `yellowbook-web`
+   - `yellowbook-api` болон `yellowbook-web` хоёр харагдах ёстой
 
 2. **API Repository Images**
-   - Click on `yellowbook-api`
-   - Show images with SHA tags (e.g., `main-abc1234`)
+   - `yellowbook-api` дээр дарах
+   - SHA tag-тай images харуул (жишээ: `main-abc1234`)
 
 3. **Web Repository Images**
-   - Click on `yellowbook-web`
-   - Show images with SHA tags
+   - `yellowbook-web` дээр дарах
+   - Images харуул
 
-4. **GitHub Actions Success**
-   - GitHub → Actions → Latest workflow run
-   - Show green checkmarks
+4. **GitHub Actions амжилттай**
+   - GitHub → Actions → Сүүлийн workflow
+   - Ногоон галочка харагдах ёстой
 
-## Step 8: Pull and Test ECR Images
+## 8-р алхам: ECR image татаж тест хийх
 
 ```bash
-# Authenticate Docker to ECR
-aws ecr get-login-password --region $AWS_REGION | \
-    docker login --username AWS --password-stdin YOUR_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+# ECR руу нэвтрэх
+aws ecr get-login-password --region us-east-1 | \
+    docker login --username AWS --password-stdin YOUR_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
 
-# Pull images
-docker pull YOUR_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/yellowbook-api:latest
-docker pull YOUR_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/yellowbook-web:latest
+# Images татах
+docker pull YOUR_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/yellowbook-api:latest
+docker pull YOUR_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/yellowbook-web:latest
 
-# Test images
+# Тест хийх
 docker run -p 3333:3333 \
     -e DATABASE_URL="postgresql://user:pass@host:5432/db" \
-    YOUR_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/yellowbook-api:latest
-
-docker run -p 3000:3000 \
-    -e NEXT_PUBLIC_API_URL="http://localhost:3333" \
-    YOUR_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/yellowbook-web:latest
+    YOUR_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/yellowbook-api:latest
 ```
 
-## Monitoring Costs
+## Зардал хянах
 
-### Set Up Billing Alerts
+### Billing Alert үүсгэх
 
-1. Go to AWS Billing Dashboard
-2. Create a budget:
-   - Budget name: "ECR Monthly Budget"
-   - Amount: $5 (or your limit)
-   - Alert threshold: 80%
+1. AWS Billing Dashboard руу ор
+2. Budget үүсгэ:
+   - Нэр: "ECR Monthly Budget"
+   - Дүн: $5 (эсвэл өөрийн limit)
+   - Alert: 80%
 
-### Monitor ECR Usage
-
-```bash
-# Get repository metrics
-aws ecr describe-repositories --repository-names yellowbook-api yellowbook-web
-
-# List all images with sizes
-aws ecr describe-images \
-    --repository-name yellowbook-api \
-    --query 'sort_by(imageDetails,& imagePushedAt)[*].[imageTags[0],imageSizeInBytes,imagePushedAt]' \
-    --output table
-```
-
-### Clean Up Old Images
+### Хуучин images устгах
 
 ```bash
-# Delete images older than 30 days (manual)
+# Хуучин images гараар устгах
 aws ecr batch-delete-image \
     --repository-name yellowbook-api \
-    --image-ids imageTag=old-tag
+    --image-ids imageTag=хуучин-tag
 ```
 
-## Troubleshooting
+## Түгээмэл асуудал
 
-### Authentication Failed
+### Нэвтрэх алдаа
 
 ```bash
-# Check AWS credentials
+# AWS credentials шалгах
 aws sts get-caller-identity
 
-# Re-authenticate Docker
-aws ecr get-login-password --region $AWS_REGION | \
-    docker login --username AWS --password-stdin YOUR_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+# Дахин нэвтрэх
+aws ecr get-login-password --region us-east-1 | \
+    docker login --username AWS --password-stdin YOUR_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
 ```
 
-### Image Push Failed
+### Image push алдаатай
 
-- Check repository exists
-- Verify IAM permissions
-- Check image tag format
-- Verify network connectivity
+- Repository үүссэн эсэхийг шалга
+- IAM permissions шалга
+- GitHub Secrets зөв эсэхийг шалга
+- Workflow logs-г уншаад хар
 
-### GitHub Actions Failing
+### GitHub Actions амжилтгүй
 
-- Check GitHub secrets are set correctly
-- Verify workflow syntax
-- Check AWS permissions
-- Review workflow logs
+- GitHub secrets зөв эсэхийг шалга
+- Workflow файл syntax шалга
+- AWS permissions шалга
+- Logs унших
 
-## Next Steps: EKS Deployment
-
-After ECR setup is complete, you'll be ready for EKS deployment:
-
-1. Create EKS cluster
-2. Configure kubectl
-3. Create Kubernetes manifests
-4. Deploy from ECR to EKS
-5. Set up ingress and load balancer
-
-This will be covered in next week's assignment.
-
-## Useful Commands
+## Хэрэгтэй командууд
 
 ```bash
-# Get repository URI
+# Repository URI авах
 aws ecr describe-repositories \
     --repository-names yellowbook-api \
     --query 'repositories[0].repositoryUri' \
     --output text
 
-# Get latest image digest
+# Сүүлийн image digest авах
 aws ecr describe-images \
     --repository-name yellowbook-api \
     --query 'sort_by(imageDetails,& imagePushedAt)[-1].imageDigest' \
     --output text
 
-# Delete repository (careful!)
+# Repository устгах (БОЛГООМЖТОЙ!)
 aws ecr delete-repository \
     --repository-name yellowbook-api \
     --force
 ```
 
-## References
+---
 
-- [AWS ECR Documentation](https://docs.aws.amazon.com/ecr/)
-- [GitHub Actions AWS Credentials](https://github.com/aws-actions/configure-aws-credentials)
-- [Docker Build and Push](https://github.com/docker/build-push-action)
+**Тэмдэглэл:** Энэ даалгавар 20 оноо. Screenshot-ууд сайн авч, багшид бүх зүйлийг тодорхой харуул. Хэрэв асуудал гарвал багшаас эсвэл найзуудаасаа асуу.
+
+**Хэмнэлттэй байгаарай:** ECR төлбөртэй! Хуучин images байнга устга.

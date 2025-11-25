@@ -114,7 +114,6 @@ GitHub Actions ашигласан. Commit бүр дээр:
 - Lint шалгана
 - Тест ажиллуулна  
 - Docker image build хийнэ
-- GitHub Container Registry руу push хийнэ
 
 **Matrix build strategy** ашигласан - API болон Web тус тусдаа parallel build хийгдэнэ.
 
@@ -162,7 +161,6 @@ yellowbook/
 - [Nx Documentation](https://nx.dev)
 - [Docker Multi-stage Builds](https://docs.docker.com/build/building/multi-stage/)
 - [GitHub Actions](https://docs.github.com/en/actions)
-- AI: GitHub Copilot, ChatGPT (кодын зарим хэсэг)
 
 ## Асуудал тулгарвал
 
@@ -173,6 +171,6 @@ yellowbook/
 
 ---
 
-**Тэмдэглэл:** Энэ төсөл бол вэб програмчлалын хичээлийн даалгавар. 
+**Тэмдэглэл:** Энэ төсөл бол ахисан вэб програмчлалын хичээлийн даалгавар. 
 
 
