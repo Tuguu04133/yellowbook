@@ -241,7 +241,7 @@
         },
         {
           "file": ".github/workflows/ci.yml",
-          "hash": "3071256785413518715"
+          "hash": "10314127197428572467"
         },
         {
           "file": ".github/workflows/ecr-deploy.yml.template",
