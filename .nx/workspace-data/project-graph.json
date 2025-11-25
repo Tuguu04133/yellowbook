@@ -308,44 +308,6 @@
             },
             "configurations": {},
             "parallelism": true
-          },
-          "lint": {
-            "cache": true,
-            "options": {
-              "cwd": "apps/web-e2e",
-              "command": "eslint ."
-            },
-            "inputs": [
-              "default",
-              "^default",
-              "{workspaceRoot}/eslint.config.mjs",
-              "{workspaceRoot}/tools/eslint-rules/**/*",
-              {
-                "externalDependencies": [
-                  "eslint"
-                ]
-              }
-            ],
-            "outputs": [
-              "{options.outputFile}"
-            ],
-            "metadata": {
-              "technologies": [
-                "eslint"
-              ],
-              "description": "Runs ESLint on project",
-              "help": {
-                "command": "npx eslint --help",
-                "example": {
-                  "options": {
-                    "max-warnings": 0
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
           }
         },
         "name": "web-e2e",
@@ -492,45 +454,12 @@
       "type": "app",
       "data": {
         "root": "apps/api",
+        "name": "api",
+        "$schema": "../../node_modules/nx/schemas/project-schema.json",
+        "sourceRoot": "apps/api/src",
+        "projectType": "application",
+        "tags": [],
         "targets": {
-          "lint": {
-            "cache": true,
-            "options": {
-              "cwd": "apps/api",
-              "command": "eslint ."
-            },
-            "inputs": [
-              "default",
-              "^default",
-              "{workspaceRoot}/eslint.config.mjs",
-              "{workspaceRoot}/tools/eslint-rules/**/*",
-              {
-                "externalDependencies": [
-                  "eslint"
-                ]
-              }
-            ],
-            "outputs": [
-              "{options.outputFile}"
-            ],
-            "metadata": {
-              "technologies": [
-                "eslint"
-              ],
-              "description": "Runs ESLint on project",
-              "help": {
-                "command": "npx eslint --help",
-                "example": {
-                  "options": {
-                    "max-warnings": 0
-                  }
-                }
-              }
-            },
-            "executor": "nx:run-commands",
-            "configurations": {},
-            "parallelism": true
-          },
           "build": {
             "executor": "@nx/esbuild:esbuild",
             "outputs": [
@@ -641,11 +570,6 @@
             "parallelism": true
           }
         },
-        "name": "api",
-        "$schema": "../../node_modules/nx/schemas/project-schema.json",
-        "sourceRoot": "apps/api/src",
-        "projectType": "application",
-        "tags": [],
         "implicitDependencies": []
       }
     },
@@ -733,13 +657,6 @@
             "configurations": {},
             "parallelism": true
           },
-          "lint": {
-            "executor": "@nx/eslint:lint",
-            "options": {},
-            "configurations": {},
-            "parallelism": true,
-            "cache": true
-          },
           "serve": {
             "executor": "@nx/next:server",
             "defaultConfiguration": "development",
@@ -768,6 +685,13 @@
             },
             "configurations": {},
             "parallelism": true
+          },
+          "lint": {
+            "executor": "@nx/eslint:lint",
+            "configurations": {},
+            "options": {},
+            "parallelism": true,
+            "cache": true
           }
         },
         "name": "web",
@@ -794,7 +718,6 @@
               "db:seed",
               "start:api",
               "build:api",
-              "lint",
               "format",
               "format:check",
               "type-check"
@@ -857,19 +780,6 @@
             },
             "configurations": {},
             "parallelism": true
-          },
-          "lint": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "lint"
-            },
-            "metadata": {
-              "scriptContent": "nx run-many -t lint",
-              "runCommand": "npm run lint"
-            },
-            "configurations": {},
-            "parallelism": true,
-            "cache": true
           },
           "format": {
             "executor": "nx:run-script",
@@ -34794,5 +34704,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1762785997967
+  "computedAt": 1764039045917
 }

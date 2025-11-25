@@ -46,7 +46,8 @@ jobs:
         run: npx prisma generate
 
       - name: Run linting
-        run: npx nx run-many -t lint --parallel=3
+        run: npx nx run-many -t lint --parallel=2
+        timeout-minutes: 10
 
       - name: Run type checking
         run: npm run type-check
@@ -55,10 +56,12 @@ jobs:
         run: npm run format:check
 
       - name: Run tests
-        run: npx nx run-many -t test --parallel=3
+        run: npx nx run-many -t test --parallel=2
+        timeout-minutes: 10
 
       - name: Build all projects
-        run: npx nx run-many -t build --parallel=3
+        run: npx nx run-many -t build --parallel=2
+        timeout-minutes: 15
 
       - name: Upload coverage reports
         uses: codecov/codecov-action@v4
