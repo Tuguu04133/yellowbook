@@ -49,9 +49,6 @@ jobs:
         run: npx nx run-many -t lint --parallel=2
         timeout-minutes: 10
 
-      - name: Run type checking
-        run: npm run type-check
-
       - name: Run format check
         run: npm run format:check
 

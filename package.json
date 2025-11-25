@@ -9,7 +9,7 @@
     "build:api": "nx build api --prod",
     "format": "nx format:write",
     "format:check": "nx format:check",
-    "type-check": "tsc --noEmit"
+    "type-check": "nx run-many -t type-check --parallel=2"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"

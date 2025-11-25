@@ -811,7 +811,7 @@
               "script": "type-check"
             },
             "metadata": {
-              "scriptContent": "tsc --noEmit",
+              "scriptContent": "nx run-many -t type-check --parallel=2",
               "runCommand": "npm run type-check"
             },
             "configurations": {},
@@ -34704,5 +34704,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1764039045917
+  "computedAt": 1764039430480
 }
