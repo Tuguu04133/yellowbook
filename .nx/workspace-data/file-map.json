@@ -55,6 +55,181 @@
   "fileMap": {
     "nonProjectFiles": [],
     "projectFileMap": {
+      "web-e2e": [
+        {
+          "file": "apps/web-e2e/playwright.config.ts",
+          "hash": "14888424123113362402",
+          "deps": [
+            "npm:@playwright/test",
+            "npm:@nx/playwright",
+            "npm:@nx/devkit"
+          ]
+        },
+        {
+          "file": "apps/web-e2e/project.json",
+          "hash": "236892884893949848"
+        },
+        {
+          "file": "apps/web-e2e/src/example.spec.ts",
+          "hash": "16019101014373124625",
+          "deps": [
+            "npm:@playwright/test"
+          ]
+        },
+        {
+          "file": "apps/web-e2e/tsconfig.json",
+          "hash": "18107275616570252607"
+        }
+      ],
+      "web": [
+        {
+          "file": "apps/web/.swcrc",
+          "hash": "2742566327615098680"
+        },
+        {
+          "file": "apps/web/index.d.ts",
+          "hash": "5498222895072842432"
+        },
+        {
+          "file": "apps/web/next-env.d.ts",
+          "hash": "1320675027584673186"
+        },
+        {
+          "file": "apps/web/next.config.js",
+          "hash": "4550114557194676587",
+          "deps": [
+            "npm:@nx/next"
+          ]
+        },
+        {
+          "file": "apps/web/postcss.config.js",
+          "hash": "4080954692028639031"
+        },
+        {
+          "file": "apps/web/project.json",
+          "hash": "3666953826983028672"
+        },
+        {
+          "file": "apps/web/public/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/web/public/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "apps/web/src/app/api/hello/route.ts",
+          "hash": "3249501742820612145"
+        },
+        {
+          "file": "apps/web/src/app/api/revalidate/route.ts",
+          "hash": "5956442527680027517",
+          "deps": [
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/global.css",
+          "hash": "15257960221628757377"
+        },
+        {
+          "file": "apps/web/src/app/layout.tsx",
+          "hash": "3199602742003048733"
+        },
+        {
+          "file": "apps/web/src/app/page.module.css",
+          "hash": "4786619528779355986"
+        },
+        {
+          "file": "apps/web/src/app/page.tsx",
+          "hash": "2627764115202523152",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/yellow-books/[id]/page.tsx",
+          "hash": "16359633018563878485",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/yellow-books/page.tsx",
+          "hash": "15652636266188052170",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/web/src/app/yellow-books/search/page.tsx",
+          "hash": "10912523025492389325",
+          "deps": [
+            "npm:react",
+            "npm:next",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/web/src/components/AutoRefresh.tsx",
+          "hash": "13965017817404845468",
+          "deps": [
+            "npm:react",
+            "npm:next"
+          ]
+        },
+        {
+          "file": "apps/web/src/components/ClientMap.tsx",
+          "hash": "16638863122329483038",
+          "deps": [
+            "npm:react"
+          ]
+        },
+        {
+          "file": "apps/web/tailwind.config.js",
+          "hash": "8880217491916646200",
+          "deps": [
+            "npm:@nx/react"
+          ]
+        },
+        {
+          "file": "apps/web/tsconfig.json",
+          "hash": "13566295045191207177"
+        }
+      ],
+      "api": [
+        {
+          "file": "apps/api/project.json",
+          "hash": "14544981260166641417"
+        },
+        {
+          "file": "apps/api/src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "apps/api/src/main.ts",
+          "hash": "7060853912599634257",
+          "deps": [
+            "npm:dotenv",
+            "npm:express",
+            "npm:cors",
+            "npm:@prisma/client",
+            "contract"
+          ]
+        },
+        {
+          "file": "apps/api/tsconfig.app.json",
+          "hash": "663763413802756907"
+        },
+        {
+          "file": "apps/api/tsconfig.json",
+          "hash": "3025378044812449119"
+        }
+      ],
       "yellowbook": [
         {
           "file": ".dockerignore",
@@ -164,7 +339,7 @@
         },
         {
           "file": "package.json",
-          "hash": "3870095454097524069",
+          "hash": "15297303060074474999",
           "deps": [
             "npm:@eslint/js",
             "npm:@nx/devkit",
@@ -288,61 +463,6 @@
           "hash": "5641982138798124953"
         }
       ],
-      "web-e2e": [
-        {
-          "file": "apps/web-e2e/playwright.config.ts",
-          "hash": "14888424123113362402",
-          "deps": [
-            "npm:@playwright/test",
-            "npm:@nx/playwright",
-            "npm:@nx/devkit"
-          ]
-        },
-        {
-          "file": "apps/web-e2e/project.json",
-          "hash": "236892884893949848"
-        },
-        {
-          "file": "apps/web-e2e/src/example.spec.ts",
-          "hash": "16019101014373124625",
-          "deps": [
-            "npm:@playwright/test"
-          ]
-        },
-        {
-          "file": "apps/web-e2e/tsconfig.json",
-          "hash": "18107275616570252607"
-        }
-      ],
-      "api": [
-        {
-          "file": "apps/api/project.json",
-          "hash": "14544981260166641417"
-        },
-        {
-          "file": "apps/api/src/assets/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/api/src/main.ts",
-          "hash": "7060853912599634257",
-          "deps": [
-            "npm:dotenv",
-            "npm:express",
-            "npm:cors",
-            "npm:@prisma/client",
-            "contract"
-          ]
-        },
-        {
-          "file": "apps/api/tsconfig.app.json",
-          "hash": "663763413802756907"
-        },
-        {
-          "file": "apps/api/tsconfig.json",
-          "hash": "3025378044812449119"
-        }
-      ],
       "config": [
         {
           "file": "libs/config/README.md",
@@ -379,7 +499,7 @@
         },
         {
           "file": "libs/config/src/lib/config.spec.ts",
-          "hash": "14624665836767688274"
+          "hash": "4458295015454730109"
         },
         {
           "file": "libs/config/src/lib/config.ts",
@@ -396,126 +516,6 @@
         {
           "file": "libs/config/tsconfig.spec.json",
           "hash": "6622138706846345436"
-        }
-      ],
-      "web": [
-        {
-          "file": "apps/web/.swcrc",
-          "hash": "2742566327615098680"
-        },
-        {
-          "file": "apps/web/index.d.ts",
-          "hash": "5498222895072842432"
-        },
-        {
-          "file": "apps/web/next-env.d.ts",
-          "hash": "1320675027584673186"
-        },
-        {
-          "file": "apps/web/next.config.js",
-          "hash": "4550114557194676587",
-          "deps": [
-            "npm:@nx/next"
-          ]
-        },
-        {
-          "file": "apps/web/postcss.config.js",
-          "hash": "4080954692028639031"
-        },
-        {
-          "file": "apps/web/project.json",
-          "hash": "3666953826983028672"
-        },
-        {
-          "file": "apps/web/public/.gitkeep",
-          "hash": "3244421341483603138"
-        },
-        {
-          "file": "apps/web/public/favicon.ico",
-          "hash": "9303420814833116677"
-        },
-        {
-          "file": "apps/web/src/app/api/hello/route.ts",
-          "hash": "3249501742820612145"
-        },
-        {
-          "file": "apps/web/src/app/api/revalidate/route.ts",
-          "hash": "5956442527680027517",
-          "deps": [
-            "npm:next"
-          ]
-        },
-        {
-          "file": "apps/web/src/app/global.css",
-          "hash": "15257960221628757377"
-        },
-        {
-          "file": "apps/web/src/app/layout.tsx",
-          "hash": "3199602742003048733"
-        },
-        {
-          "file": "apps/web/src/app/page.module.css",
-          "hash": "4786619528779355986"
-        },
-        {
-          "file": "apps/web/src/app/page.tsx",
-          "hash": "2627764115202523152",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/web/src/app/yellow-books/[id]/page.tsx",
-          "hash": "16359633018563878485",
-          "deps": [
-            "npm:react",
-            "npm:next",
-            "contract"
-          ]
-        },
-        {
-          "file": "apps/web/src/app/yellow-books/page.tsx",
-          "hash": "15652636266188052170",
-          "deps": [
-            "npm:react",
-            "npm:next",
-            "contract"
-          ]
-        },
-        {
-          "file": "apps/web/src/app/yellow-books/search/page.tsx",
-          "hash": "10912523025492389325",
-          "deps": [
-            "npm:react",
-            "npm:next",
-            "contract"
-          ]
-        },
-        {
-          "file": "apps/web/src/components/AutoRefresh.tsx",
-          "hash": "13965017817404845468",
-          "deps": [
-            "npm:react",
-            "npm:next"
-          ]
-        },
-        {
-          "file": "apps/web/src/components/ClientMap.tsx",
-          "hash": "16638863122329483038",
-          "deps": [
-            "npm:react"
-          ]
-        },
-        {
-          "file": "apps/web/tailwind.config.js",
-          "hash": "8880217491916646200",
-          "deps": [
-            "npm:@nx/react"
-          ]
-        },
-        {
-          "file": "apps/web/tsconfig.json",
-          "hash": "13566295045191207177"
         }
       ],
       "contract": [

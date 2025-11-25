@@ -1096,10 +1096,6 @@
       "package.json",
       "nx/core/package-json"
     ],
-    "metadata.targetGroups.NPM Scripts.6": [
-      "package.json",
-      "nx/core/package-json"
-    ],
     "metadata.description": [
       "package.json",
       "nx/core/package-json"
@@ -1125,34 +1121,6 @@
       "nx/core/package-json"
     ],
     "targets": [
-      "package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test": [
-      "package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test.executor": [
-      "package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test.options": [
-      "package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test.metadata": [
-      "package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test.options.script": [
-      "package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test.metadata.scriptContent": [
-      "package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test.metadata.runCommand": [
       "package.json",
       "nx/core/package-json"
     ],
@@ -1339,14 +1307,6 @@
     "targets.nx-release-publish.options": [
       "package.json",
       "nx/core/package-json"
-    ],
-    "targets.test.cache": [
-      "nx.json",
-      "nx/target-defaults"
-    ],
-    "targets.test.parallelism": [
-      "nx.json",
-      "nx/target-defaults"
     ]
   },
   "apps/api": {

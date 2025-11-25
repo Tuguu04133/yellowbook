@@ -714,7 +714,6 @@
         "metadata": {
           "targetGroups": {
             "NPM Scripts": [
-              "test",
               "db:seed",
               "start:api",
               "build:api",
@@ -732,19 +731,6 @@
           }
         },
         "targets": {
-          "test": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "test"
-            },
-            "metadata": {
-              "scriptContent": "echo \"Error: no test specified\" && exit 1",
-              "runCommand": "npm run test"
-            },
-            "configurations": {},
-            "parallelism": true,
-            "cache": true
-          },
           "db:seed": {
             "executor": "nx:run-script",
             "options": {
@@ -34704,5 +34690,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1764039430480
+  "computedAt": 1764039765245
 }
