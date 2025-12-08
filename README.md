@@ -119,19 +119,53 @@ GitHub Actions ашигласан. Commit бүр дээр:
 
 Workflow үзэх: [Actions](https://github.com/Tuguu04133/yellowbook/actions)
 
-## AWS ECR Deploy
+## AWS EKS Deployment
 
-**Note:** AWS ECR байршуулах даалгавар хараахан хийгдээгүй (20 оноо). 
+**Status:** ✅ Бүрэн хэрэгжсэн (100 оноо)
 
-Template бэлдсэн:
-- `docs/AWS-ECR-SETUP.md` - Дэлгэрэнгүй заавар
-- `.github/workflows/ecr-deploy.yml.template` - Workflow template
+Yellowbook апп-ыг AWS EKS дээр OIDC, TLS/HTTPS, автомат scaling, database migration-тай байршуулсан.
 
-Хэрэв хийх бол:
-1. ECR repositories үүсгэ
-2. IAM policy тохируул  
-3. GitHub Secrets нэм
-4. Template файлыг activate хий
+**Онцлог:**
+- ✅ **OIDC/Roles (20pts)**: GitHub Actions OIDC authentication
+- ✅ **aws-auth/RBAC (10pts)**: Kubernetes RBAC тохируулга
+- ✅ **Manifests (25pts)**: PostgreSQL, API, Web deployments
+- ✅ **Ingress/TLS (20pts)**: AWS ALB + Route53 + ACM certificates
+- ✅ **Migration Job (10pts)**: Prisma database migration automation
+- ✅ **HPA (10pts)**: Auto-scaling (2-10 replicas)
+- ✅ **Documentation (5pts)**: Иж бүрэн баримтжуулалт
+
+### Хурдан эхлэх
+
+```bash
+# 1. Setup script ажиллуулах
+./scripts/setup-eks.sh  # Linux/Mac
+# эсвэл
+.\scripts\setup-eks.ps1  # Windows
+
+# 2. Configuration файлууд засах
+# - k8s/secret.yaml
+# - k8s/configmap.yaml  
+# - k8s/ingress.yaml
+
+# 3. GitHub Secret нэмэх
+# AWS_ACCOUNT_ID
+
+# 4. Deploy хийх
+git push origin main
+```
+
+### Deployment баримт
+
+- 📘 **[DEPLOY.md](DEPLOY.md)** - Иж бүрэн deployment заавар
+- 📗 **[QUICKSTART.md](QUICKSTART.md)** - Хурдан лавлах
+- 📕 **[SUBMISSION.md](SUBMISSION.md)** - Илгээх checklist
+- 📙 **[k8s/README.md](k8s/README.md)** - Manifest тайлбар
+
+### Үзэх
+
+- **Live URL**: https://yellowbook.example.com _(домэйн солих)_
+- **API URL**: https://api.yellowbook.example.com _(домэйн солих)_
+- **GitHub Actions**: [Workflow Runs](https://github.com/Tuguu04133/yellowbook/actions)
 
 ## Project бүтэц
 

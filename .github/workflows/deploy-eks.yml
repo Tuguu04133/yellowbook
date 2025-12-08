@@ -1,0 +1,158 @@
+name: Build and Deploy to EKS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-1
+  EKS_CLUSTER_NAME: yellowbook-cluster
+  ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com
+  
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy to EKS
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Configure AWS credentials using OIDC
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GitHubActionsDeployRole
+        role-session-name: GitHubActionsSession
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Build and push API image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile.api
+        push: true
+        tags: |
+          ${{ env.ECR_REGISTRY }}/yellowbook-api:${{ github.sha }}
+          ${{ env.ECR_REGISTRY }}/yellowbook-api:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: Build and push Web image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./Dockerfile.web
+        push: true
+        tags: |
+          ${{ env.ECR_REGISTRY }}/yellowbook-web:${{ github.sha }}
+          ${{ env.ECR_REGISTRY }}/yellowbook-web:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+
+    - name: Update kubeconfig
+      run: |
+        aws eks update-kubeconfig \
+          --region ${{ env.AWS_REGION }} \
+          --name ${{ env.EKS_CLUSTER_NAME }}
+
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+        version: 'v1.28.0'
+
+    - name: Create namespace if not exists
+      run: |
+        kubectl apply -f k8s/namespace.yaml
+
+    - name: Deploy ConfigMap and Secrets
+      run: |
+        kubectl apply -f k8s/configmap.yaml
+        kubectl apply -f k8s/secret.yaml
+
+    - name: Deploy PostgreSQL
+      run: |
+        kubectl apply -f k8s/postgres-deployment.yaml
+
+    - name: Wait for PostgreSQL to be ready
+      run: |
+        kubectl wait --for=condition=ready pod \
+          -l app=postgres \
+          -n yellowbooks \
+          --timeout=300s
+
+    - name: Run Database Migration Job
+      run: |
+        # Delete old migration job if exists
+        kubectl delete job yellowbook-migration -n yellowbooks --ignore-not-found=true
+        
+        # Update migration job with new image tag
+        sed -i "s|tuguu04133/yellowbook-api:latest|${{ env.ECR_REGISTRY }}/yellowbook-api:${{ github.sha }}|g" k8s/migration-job.yaml
+        
+        # Apply migration job
+        kubectl apply -f k8s/migration-job.yaml
+        
+        # Wait for migration to complete
+        kubectl wait --for=condition=complete job/yellowbook-migration \
+          -n yellowbooks \
+          --timeout=300s
+        
+        # Show migration logs
+        kubectl logs -n yellowbooks job/yellowbook-migration
+
+    - name: Deploy API and Web applications
+      run: |
+        # Update image tags in deployment files
+        sed -i "s|tuguu04133/yellowbook-api:latest|${{ env.ECR_REGISTRY }}/yellowbook-api:${{ github.sha }}|g" k8s/api-deployment.yaml
+        sed -i "s|tuguu04133/yellowbook-web:latest|${{ env.ECR_REGISTRY }}/yellowbook-web:${{ github.sha }}|g" k8s/web-deployment.yaml
+        
+        # Apply deployments
+        kubectl apply -f k8s/api-deployment.yaml
+        kubectl apply -f k8s/web-deployment.yaml
+
+    - name: Deploy HPA
+      run: |
+        kubectl apply -f k8s/hpa.yaml
+
+    - name: Deploy Ingress
+      run: |
+        kubectl apply -f k8s/ingress.yaml
+
+    - name: Wait for deployments to be ready
+      run: |
+        kubectl rollout status deployment/yellowbook-api -n yellowbooks --timeout=300s
+        kubectl rollout status deployment/yellowbook-web -n yellowbooks --timeout=300s
+
+    - name: Verify deployment
+      run: |
+        echo "=== Pods ==="
+        kubectl get pods -n yellowbooks
+        echo ""
+        echo "=== Services ==="
+        kubectl get svc -n yellowbooks
+        echo ""
+        echo "=== Ingress ==="
+        kubectl get ingress -n yellowbooks
+        echo ""
+        echo "=== HPA ==="
+        kubectl get hpa -n yellowbooks
+
+    - name: Get Ingress URL
+      run: |
+        echo "Waiting for Ingress to get an address..."
+        sleep 30
+        INGRESS_URL=$(kubectl get ingress yellowbook-ingress -n yellowbooks -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
+        echo "Ingress URL: $INGRESS_URL"
+        echo "Configure your DNS to point to this Load Balancer"

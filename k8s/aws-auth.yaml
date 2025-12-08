@@ -1,0 +1,22 @@
+# ConfigMap to configure AWS IAM users/roles for EKS cluster access
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::932701826919:role/YellowbookEKSNodeRole
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
+    - rolearn: arn:aws:iam::932701826919:role/GitHubActionsDeployRole
+      username: github-actions-deployer
+      groups:
+        - system:masters
+  mapUsers: |
+    - userarn: arn:aws:iam::932701826919:user/YOUR_IAM_USER
+      username: admin
+      groups:
+        - system:masters

@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: yellowbooks
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - secret.yaml
+  - postgres-deployment.yaml
+  - api-deployment.yaml
+  - web-deployment.yaml
+  - migration-job.yaml
+  - hpa.yaml
+  - ingress.yaml
+  - rbac.yaml
+
+# Common labels to apply to all resources
+commonLabels:
+  app.kubernetes.io/name: yellowbook
+  app.kubernetes.io/managed-by: kustomize
+
+# Image transformations
+images:
+  - name: tuguu04133/yellowbook-api
+    newName: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/yellowbook-api
+    newTag: latest
+  - name: tuguu04133/yellowbook-web
+    newName: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/yellowbook-web
+    newTag: latest
