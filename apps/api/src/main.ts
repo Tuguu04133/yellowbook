@@ -16,6 +16,10 @@ app.get('/', (req, res) => {
   res.send({ message: 'Yellow Book API', version: '1.0.0' });
 });
 
+app.get('/api/health', (req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 // GET /yellow-books - жагсаалт авах
 app.get('/yellow-books', async (req, res) => {
   try {
