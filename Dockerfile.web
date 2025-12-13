@@ -42,15 +42,23 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
 
-# Copy built Next.js app
+# Copy standalone output (includes node_modules and dependencies)
 COPY --from=builder --chown=nextjs:nodejs /app/dist/apps/web/.next/standalone ./
+
+# CRITICAL: Overwrite the .next folder with complete build artifacts including static files
+# Standalone's .next is incomplete - we need cache, server, static, types from full build
 COPY --from=builder --chown=nextjs:nodejs /app/dist/apps/web/.next/static ./apps/web/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/dist/apps/web/public ./apps/web/public
+COPY --from=builder --chown=nextjs:nodejs /app/dist/apps/web/.next/server ./apps/web/.next/server
+COPY --from=builder --chown=nextjs:nodejs /app/dist/apps/web/.next/cache ./apps/web/.next/cache
+
+# Copy public assets
+COPY --from=builder --chown=nextjs:nodejs /app/apps/web/public ./apps/web/public
 
 USER nextjs
 
@@ -61,5 +69,5 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
   CMD wget --no-verbose --tries=1 --spider http://localhost:3000/ || exit 1
 
-# Start Next.js server
+# Start Next.js standalone server
 CMD ["node", "apps/web/server.js"]
